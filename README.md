@@ -28,7 +28,7 @@ $ git clone https://github.com/EmmaBlue/Blue_E_Portfolio.git
 
 # Go into the repository
 
-$ cd Blue_E_Portfolio
+$ cd Blue_E_Portfolio_Webpack
 
 ```
 
