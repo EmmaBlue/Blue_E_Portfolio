@@ -1,0 +1,95 @@
+#contactp-sect {
+    text-align: center;
+
+    p {
+
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+
+#form-container {
+
+    text-align: center;
+
+    #contact-grid {
+
+        display: grid;
+    }
+
+    .field input, textarea {
+
+        min-width: 70%;
+        background-color: $text-color;
+        border: 0px;
+        padding:10px;
+        margin-bottom: 5px;
+        color: white;
+        font-family: $main-font;
+        font-size: 0.9em;
+        //Remove blue glow around field when focused on
+    
+    }
+    
+    textarea {
+    
+        outline: none;
+        resize: none;
+        //Remove default scrollbars in IE
+        overflow: auto;
+    }
+
+    /* Placeholder Text Styles */
+    
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color:white;
+        font-family: $main-font;
+        font-size: 0.9em;
+      }
+      ::-moz-placeholder { /* Firefox 19+ */
+        color: white;
+        font-family: $main-font;
+        font-size: 0.875em;
+      }
+      :-ms-input-placeholder { /* IE 10+ */
+        color: white;
+        font-family: $main-font;
+        font-size: 0.875em;
+      }
+      :-moz-placeholder { /* Firefox 18- */
+        color: white;
+        font-family: $main-font;
+        font-size: 0.875em;
+      }
+
+    button {
+
+        margin-bottom: 1em;
+    }
+
+}
+}
+
+/* Form Media Queries */
+
+@media screen and (min-width: 600px) {
+
+    .contact-grid {
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 90%;
+        margin: 0 auto;
+
+    }
+
+  
+
+    .field:last-child {
+
+        grid-column-start: 1; 
+        grid-column-end: 3; 
+    }
+
+
+}

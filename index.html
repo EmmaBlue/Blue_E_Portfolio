@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Emma Jae Blue</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@3.0.2/dist/vue-router.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  
+</head>
+
+  <body >
+    <main id="app">
+     <!-- router view will display the components we want based on route -->
+     <header id="main-header">
+        <section id="logo-sect">
+          <h2 id="logo">Emma Jae <span id="big-blue">Blue</span></h2>
+        </section>
+        <div class="navArea">
+            <!-- Start Mobile Nav -->
+            <input type="checkbox" class="nav_box" id="nav-toggle">
+            <label for="nav-toggle" class="nav_but">
+                    <span class="nav_icon">&nbsp;</span>
+            </label>
+            <!-- End Mobile Nav -->
+            <div class="nav_background"></div>
+                <nav class="nav_full">
+                    <h3 class="hidden">Main Navigation</h3>
+                    <ul class="nav_list">
+                         <li class="nav_item"><router-link to="/" class="nav_link">Home</router-link></li>
+                         <li class="nav_item"><router-link to="/projects" class="nav_link">Projects</router-link></li>
+                        <li class="nav_item"><router-link to="/about" class="nav_link">About</router-link></li>
+                        <li class="nav_item"><router-link to="/community" class="nav_link">Community Work</router-link></li>
+                         <li class="nav_item"> <router-link to="/contact" class="nav_link">Contact</router-link></li>
+                        <li class="nav_item">
+                            <ul class="socNav">
+                                <li v-for="item in socItems">
+                                    <a :href="item.link" target="_blank" :id="item.id">
+                                        <i :class="item.class"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+        </div>
+      </header>
+    <router-view></router-view>
+    <footer>
+        <ul class="socNav">
+           <li v-for="item in socItems">
+               <a :href="item.link" target="_blank" :id="item.id">
+                   <i :class="item.class"></i>
+              </a>
+           </li>
+       </ul>
+       <p>Emma Jae Blue</p>
+       <p>2018 All Rights Reserved</p>
+    </footer>
+</main>
+     <!-- we can display other components around our router-view -->
+     <!-- for example we could display a footer component here or a -->
+     <!-- header component that displays navigation above -->
+     <script src="js/app.js"></script>
+  </body>
+</html>

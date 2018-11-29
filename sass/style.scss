@@ -1,0 +1,64 @@
+@import 'modules/_variables';
+@import 'modules/_header';
+@import 'modules/_front';
+@import 'modules/_projects';
+@import 'modules/_about';
+@import 'modules/_community';
+@import 'modules/_contact';
+@import 'modules/_footer';
+@import 'modules/_projects_page';
+@import 'modules/_community_page';
+@import 'modules/_contactp';
+
+body {
+
+    background-color: $bckgrnd-color;
+    font-family: $main-font;
+    font-size: $mfont-size;
+    color: $text-color;
+    margin: 0px;
+}
+
+h2 {
+
+    text-align: center;
+    font-weight: normal;
+}
+
+.flex {
+
+    display: flex;
+}
+
+button {
+
+    background-color: $accent-color;
+    padding: .8em 1.25em .8em 1.25em;
+    font-family: $main-font;
+    color: white;
+    border-color: transparent;
+    font-weight: 900;
+    font-size: 1em;
+    transition: 0.8s background-color ease;
+}
+
+button:hover {
+
+    background-color: $text-color;
+}
+
+button a {
+
+    color: white;
+    text-decoration: none;
+}
+
+.hidden {
+
+    display: none;
+}
+
+.flex {
+
+    display: flex;
+}

@@ -1,0 +1,31 @@
+{
+  "name": "blue_e_portfolio",
+  "version": "1.0.0",
+  "description": "Emma Blue's portfolio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmmaBlue/Blue_E_Portfolio.git"
+  },
+  "author": "Emma Blue",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EmmaBlue/Blue_E_Portfolio/issues"
+  },
+  "homepage": "https://github.com/EmmaBlue/Blue_E_Portfolio#readme",
+  "dependencies": {
+    "eslint": "^5.9.0",
+    "sass": "^1.15.1",
+    "vue-mq": "^0.2.1",
+    "vue-router": "^3.0.2"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.3",
+    "gulp": "^3.9.1",
+    "gulp-imagemin": "^5.0.3",
+    "gulp-sass": "^4.0.2"
+  }
+}
