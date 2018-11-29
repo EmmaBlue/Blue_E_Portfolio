@@ -1,0 +1,134 @@
+#project-sect {
+
+    background-color: $second-bckgrnd;
+
+    #but-sect {
+
+        padding: 1em 0em 1em 0em;
+        text-align: center;
+    }
+}
+
+#project-grid {
+
+    display: grid;
+    grid-template-columns:repeat(auto-fill, minmax(150px, 1fr));
+    justify-content: stretch;
+    object-fit: cover;
+}
+
+@media screen and (min-width: 768px) {
+
+    #project-grid {
+
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        justify-content: stretch;
+        object-fit: cover;
+    }
+
+}
+
+.work-box {
+
+    background-color: $text-color;
+    min-height: 212px;
+}
+
+@media screen and (min-width: 1024px) {
+
+    #project-sect {
+    
+        #but-sect {
+    
+            padding: 1.5em 0em 1.5em 0em;
+        }
+    }
+    
+}
+
+//Image Styles 
+
+
+
+.work-box:nth-child(1) {
+
+    background: url("../images/lsfc-mobile@2x.jpg") no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+}
+
+
+
+.work-box:nth-child(2) {
+
+    background: url("../images/lyac-mobile@2x.jpg") no-repeat;
+    background-position: top center;
+    background-size: cover;
+}
+
+.work-box:nth-child(3) {
+
+
+    background: url("../images/scs-mobile@2x.jpg") no-repeat;
+    background-position: top center;
+    background-size: cover;
+}
+
+.work-box:nth-child(4) {
+
+    background: url("../images/purevol-mobile@2x.jpg") no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+}
+
+// Media Queries for Tablet Images
+
+@media screen and (min-width: 600px) and (max-width: 1280px) {
+
+    .work-box:nth-child(1) {
+
+        background: url("../images/lsfc-desktop.jpg") no-repeat;
+        background-size: cover;
+        background-position: center center;
+    
+    }
+    
+    
+    
+    .work-box:nth-child(2) {
+    
+        background: url("../images/lyac-desktop.jpg") no-repeat;
+        background-position: top center;
+        background-size: cover;
+    }
+    
+    .work-box:nth-child(3) {
+    
+    
+        background: url("../images/scs-desktop.jpg") no-repeat;
+        background-position: top center;
+        background-size: cover;
+    }
+    
+    .work-box:nth-child(4) {
+    
+        background: url("../images/purevol-desktop.jpg") no-repeat;
+        background-position: bottom center;
+        background-size: cover;
+    }
+}
+
+@media screen and (min-width: 1281px) {
+
+    .work-box:nth-child(3) {
+    
+    
+        background: url("../images/scs-wide.jpg") no-repeat;
+        background-position: top center;
+        background-size: cover;
+    }
+}
+
+  

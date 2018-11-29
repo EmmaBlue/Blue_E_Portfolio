@@ -1,0 +1,74 @@
+#main-home {
+
+    #about-sect {
+
+        margin: 0 auto;
+        text-align: center;
+        margin-bottom: 1em;
+        h2 {
+    
+            font-family: $accent-font; 
+        }
+    
+        p {
+    
+            text-align: left;
+            padding: 0 7% 0 7%;
+        }
+    
+        #about-flex {
+    
+            #about-pic {
+    
+                width: 60%;
+                height: 60%;
+            }
+    
+        }
+    
+    }
+
+
+}
+
+
+
+@media screen and (min-width: 768px) {
+
+    #main-home {
+
+        #about-sect {
+            padding: 0 7% 0 7%;
+            text-align: left;
+    
+            p {
+    
+                text-align: left;
+                padding-left: 2em;
+            }
+    
+            #about-flex {
+    
+                display: flex;
+                justify-content: center;
+                
+                #about-pic {
+    
+                    width: 30%;
+                    height: 30%;
+                }
+    
+                button {
+    
+                    margin-left: 2em;
+                    margin-top: 1em;
+                }
+    
+            }
+        }
+
+
+    }
+
+    
+}

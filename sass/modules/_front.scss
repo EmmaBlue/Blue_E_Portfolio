@@ -1,0 +1,28 @@
+#front-sect {
+    padding: 0 5% 0 5%;
+
+    h2 {
+
+        font-family: $accent-font; 
+        font-size: 1.75em;
+    }
+
+    p {
+
+        font-size: 1.3em;
+        line-height: 1.8em;
+        overflow-wrap: break-word;
+        margin-top:1em;
+    }
+
+    span {
+
+        font-weight: bold;
+    }
+
+    #emma-front {
+
+        width: 100%;
+    }
+
+}

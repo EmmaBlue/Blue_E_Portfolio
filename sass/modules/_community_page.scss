@@ -1,0 +1,253 @@
+#comm-main #comm-work {
+
+    text-align: center;
+    padding-left: 25px;
+    padding-right: 25px;
+
+    p {
+
+        text-align: left;
+    }
+}
+
+#lyac-pic {
+
+    //min-width: 220px;
+    //min-height: 160px;
+    display:inline-block;
+    background-color: $text-color; 
+    border: 1px white solid;
+}
+
+#projects-support {
+
+    text-align: center;
+}
+
+.lyac-box {
+
+    width: 85px;
+    height: 90px;
+    display: inline-block;
+}
+
+// Research and Evaluation Section Styles
+
+#research-sect {
+
+    background-color: $second-bckgrnd;
+    text-align: center;
+
+    h2 {
+
+        padding-top: 20px;
+        text-align: center;
+    }
+
+    .comm-box {
+
+        h2 {
+
+            text-align: center;
+            background-color: $second-bckgrnd;
+            padding:10px 20px 10px 20px;
+            display: inline-block;
+            border: 1.5px $text-color solid;
+        }
+
+
+    }
+
+
+
+
+.comm-box:nth-child(1) {
+
+    background: url("../images/interview-mobile.jpg") no-repeat;
+    background-position: center center;
+    background-size: cover;
+    min-height: 220px;
+}
+
+.comm-box:nth-child(2) {
+
+    background: url("../images/laptop-mobile.jpg") no-repeat;
+    background-position: center center;
+    background-size: cover;
+    min-height: 220px;
+}
+}
+.comm-box {
+
+    min-width: 320px;
+    min-height: 175px;
+}
+
+
+.comm-pic-sect {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+// Presentation and Workshops Section
+
+#prezi-sect {
+
+
+
+    h2 {
+
+        padding-top: 20px;
+        margin-top: 0px;
+    }
+
+    .org-logo {
+
+        min-width: 150px;
+        min-height: 30px;
+
+        padding-left:30px;
+    }
+
+    .comm-box {
+
+        justify-content: left;
+
+
+        p {
+
+            padding-left: 15px;
+            padding-right: 20px;
+            justify-content:left;
+        }
+    }
+
+    .comm-box:nth-child(1) {
+
+        background-color: $second-bckgrnd;
+    }
+
+    .comm-box:nth-child(2) {
+
+        background-color: $bckgrnd-color;
+    }
+}
+
+
+// Media Queries for Community Work Section
+
+@media screen and (min-width: 600px) {
+
+    #comm-work {
+
+        display: flex;
+    }
+
+    #lyac-pic {
+
+        margin-right: 15px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+
+    #comm-main {
+
+        display: flex;
+    }
+
+    .lyac-box {
+
+        display: block;
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-bottom:10px;
+    }
+
+    #projects-support {
+
+        margin-right: 5%;
+        border-left: 1px solid $text-color;
+        padding-left:30px;
+        margin-bottom:20px;
+    }
+
+
+}
+
+// Media Queries for Prezi Section 
+
+@media screen and (min-width: 600px) {
+
+    #prezi-sect {
+
+        h2 {
+
+            background-color: $second-bckgrnd;
+            padding-bottom: 20px;
+        }
+
+        .comm-box:nth-child(1) {
+
+            background-color: $bckgrnd-color;
+        }
+    }
+
+}
+
+/*Media Queries for Research and Eval Images*/
+
+@media screen and (min-width: 600px) and (max-width:1023px) {
+
+    #research-sect {
+
+        .comm-box:nth-child(1) {
+    
+            background: url("../images/interview-tablet.jpg") no-repeat;
+            background-position: center center;
+            background-size: cover;
+            min-height: 220px;
+        }
+        
+        .comm-box:nth-child(2) {
+        
+            background: url("../images/laptop-tablet.jpg") no-repeat;
+            background-position: center center;
+            background-size: cover;
+            min-height: 220px;
+        }
+    
+    
+    }
+
+
+}
+
+@media screen and (min-width: 1024px) and (max-width:1280px) {
+
+    #research-sect {
+
+        .comm-box:nth-child(1) {
+    
+            background: url("../images/interview-desktop.jpg") no-repeat;
+            background-position: center center;
+            background-size: cover;
+            min-height: 220px;
+        }
+        
+        .comm-box:nth-child(2) {
+        
+            background: url("../images/laptop-desktop.jpg") no-repeat;
+            background-position: center center;
+            background-size: cover;
+            min-height: 220px;
+        }
+    
+    
+    }
+}
+
+
+
+
