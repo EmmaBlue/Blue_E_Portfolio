@@ -1,5 +1,5 @@
 <?php 
-$db_dsn = array(
+ $db_dsn = array(
     'host' => 'localhost',
     'dbname' => 'db_portfolio',
     'charset' => 'utf8',
@@ -28,5 +28,6 @@ try{
     echo 'Connection Error ' . $exception->getMessage(); 
     exit();
 }
+
 
 ?>

@@ -9,6 +9,7 @@
 @import 'modules/_projects_page';
 @import 'modules/_community_page';
 @import 'modules/_contactp';
+@import 'modules/_lightbox';
 
 body {
 
@@ -41,6 +42,21 @@ button {
     font-size: 1em;
     transition: 0.8s background-color ease;
 }
+
+.hidden-lightbox {
+
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+    transition: all 0.7s;
+    max-height: 0;
+}
+
+.show-section {
+
+    max-height: 1200px;
+}
+
 
 button:hover {
 

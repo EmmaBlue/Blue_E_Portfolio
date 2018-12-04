@@ -47,7 +47,6 @@ const home = Vue.component('home-vue', {
 <section id="project-sect">
   <div id="project-grid">
       <section class="work-box">
-      
       </section>
       <section class="work-box">
       </section>
@@ -63,7 +62,8 @@ const home = Vue.component('home-vue', {
 <section id="about-sect">
       <h2>About Me</h2>
        <div id="about-flex">
-          <img id="about-pic" src="./images/about-mobile.jpg">
+          <!--<img id="about-pic" src="./images/about-mobile.jpg">-->
+          <img id="about-pic" srcset="./images/about-mobile.jpg 290w, ./images/about-desktop.jpg 225w" sizes="(max-width:600px) 290px, (min-width:601px) 225px, 290px"/>
             <div>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin iaculis sapien sapien, ac interdum libero mollis id. Ut a nibh posuere, ullamcorper leo sed, mattis ligula. Sed iaculis ligula sem. Duis non sem ut urna tempus ullamcorper. Nullam vestibulum fringilla euismod. Morbi eleifend dui ligula, et commodo elit malesuada non. Sed at suscipit arcu. Suspendisse non suscipit neque, at gravida sem. Proin maximus, est in convallis aliquet, mi odio eleifend diam
@@ -91,18 +91,75 @@ const projects = Vue.component('projects-vue', {
 
         return {
 
-        
+            alldata: [],
+            sectiondata: [],
+            singlesectiondata : [],
+            arrowid : "",
+
+            projectname: "",
+            projectmobile : "",
+            projectfeatures : "",
+            projectdesc : "",
+            showDetails : false
+
         }
 
     },
 
+    mounted : function() {
+            
+        //passing null in makes boolean false, pass into else statement in fetchMovieData
+        this.fetchSectionData(null);
+
+
+    },
     methods: {
 
-        showMedia: function(event){
-            // `this` inside methods points to the Vue instance
-            // `event` is the native DOM event
-            console.log('showMedia working!')
-    
+
+        loadSection(e) {
+
+            dataKey = e.target.getAttribute("data");
+            currentData = this.alldata.filter(tbl_section=> tbl_section.section_ID == dataKey);
+            this.projectname = currentData[0].section_name;
+            this.projectmobile = currentData[0].mobile_path;
+            this.projectfeatures= currentData[0].section_features;
+            this.projectdesc= currentData[0].section_desc;
+            this.showDetails = true;
+            return dataKey;
+
+            //setTimeout(function () {window.scrollTo(0,1200);}, 500);
+
+        },
+
+        backwardSection() {
+            // depending on datakey on section, when arrow clicked, make section ID - 1 
+            var getKey = getKey.bind(dataKey);
+            console.log(dataKey);
+
+        },
+
+        fetchSectionData(project) {
+            // IF TRUE                                                : IF FALSE
+            url = project ? `./includes/index.php?project=${project}` : './includes/index.php';
+
+            fetch(url) // pass in the one or many query
+            .then(res => res.json())
+            .then(data => {
+                // IF PROJECT TRUE
+                if (project) {
+
+                    //getting one movie, so use the single array
+                    this.sectiondata = data;
+                } else {
+                    // push all the video into the video array
+                    this.alldata = data;
+                }
+            })
+        },
+
+        closeSection(e) {
+            this.showDetails = false;
+
         }
 
     },
@@ -110,22 +167,40 @@ const projects = Vue.component('projects-vue', {
 template: `<section id="projectp-sect">
 <h2>Projects</h2>
 <div id="projects-gal">
-    <section class="project-box">
+    <section class="project-box" :data="1" v-on:click="loadSection">
     </section>
-    <section class="project-box">
+    <section class="project-box" :data="2" v-on:click="loadSection">
     </section>
-    <section class="project-box">
+    <section class="project-box" :data="3" v-on:click="loadSection">
     </section>
-    <section class="project-box">
+    <section class="project-box" :data="4" v-on:click="loadSection">
     </section>
-    <section class="project-box">
+    <section class="project-box" :data="5" v-on:click="loadSection">
     </section>
-    <section class="project-box">
+    <section class="project-box" :data="6" v-on:click="loadSection">
     </section>
-    <section class="project-box">
+    <section class="project-box" :data="7" v-on:click="loadSection">
     </section>
-    <section class="project-box">
+    <section class="project-box" :data="8" v-on:click="loadSection">
     </section>
+    <div class="hidden-lightbox lightbox" :class="{'show-section' : showDetails}">
+        <h2 class="hidden">{{projectname}}</h2>
+        <span v-on:click="closeSection" class="lightbox_icon">X</span>
+        <div>
+            <img :alt="projectname" :src="'./images/' + projectmobile">
+        </div>
+        <div class="project-text">
+            <h2>Technical Features</h2>
+            <p class="project-features">{{projectfeatures}}</p>
+            <p class="project-desc">{{projectdesc}}</p>
+        </div>
+        <div class="arrow" v-on:click="backwardSection">
+            <p>></p>
+        </div>
+        <div class="arrow" v-on:click="loadSection">
+            <p><</p>
+        </div>
+    </div>
 </div>
 </section>
 
@@ -140,12 +215,79 @@ const community = Vue.component('community-vue', {
 
         return {
 
+            alldata: [],
+            sectiondata: [],
+            singlesectiondata : [],
+            arrowid : "",
+
+            projectname: "",
+            projectmobile : "",
+            projectfeatures : "",
+            projectdesc : "",
+            showDetails : false
+
         
         }
 
     },
 
+    mounted : function() {
+            
+        //passing null in makes boolean false, pass into else statement in fetchMovieData
+        this.fetchSectionData(null);
+
+
+    },
+
     methods: {
+
+        loadSection(e) {
+
+            dataKey = e.target.getAttribute("data");
+            currentData = this.alldata.filter(tbl_section=> tbl_section.section_ID == dataKey);
+            this.projectname = currentData[0].section_name;
+            this.projectmobile = currentData[0].mobile_path;
+            this.projectfeatures= currentData[0].section_features;
+            this.projectdesc= currentData[0].section_desc;
+            this.showDetails = true;
+            return dataKey;
+
+            //setTimeout(function () {window.scrollTo(0,1200);}, 500);
+
+        },
+
+        backwardSection() {
+            // depending on datakey on section, when arrow clicked, make section ID - 1 
+            var getKey = getKey.bind(dataKey);
+            console.log(dataKey);
+
+        },
+
+        fetchSectionData(project) {
+            // IF TRUE                                                : IF FALSE
+            url = project ? `./includes/index.php?project=${project}` : './includes/index.php';
+
+            fetch(url) // pass in the one or many query
+            .then(res => res.json())
+            .then(data => {
+                // IF PROJECT TRUE
+                if (project) {
+
+                    //getting one movie, so use the single array
+                    this.sectiondata = data;
+                } else {
+                    // push all the video into the video array
+                    this.alldata = data;
+                }
+            })
+        },
+
+        closeSection(e) {
+            this.showDetails = false;
+
+        }
+
+        
     
 
     },
@@ -166,11 +308,29 @@ const community = Vue.component('community-vue', {
 <section id="research-sect">
     <h2>Research & Evaluation Projects</h2>
     <section class="comm-pic-sect">
-        <section class="comm-box">
+        <section class="comm-box" :data="9" v-on:click="loadSection">
             <h2>YPD Interviewing</h2>
         </section>
-        <div class="comm-box">
+        <section class="comm-box" :data="10" v-on:click="loadSection">
             <h2>Co-Op Evaluation</h2>
+        </section>
+        <div class="hidden-lightbox lightbox" :class="{'show-section' : showDetails}">
+                <h2 class="hidden">{{projectname}}</h2>
+                <span v-on:click="closeSection" class="lightbox_icon">X</span>
+                <div>
+                    <img :alt="projectname" :src="'./images/' + projectmobile">
+                </div>
+                <div class="project-text">
+                    <h2>Technical Features</h2>
+                    <p class="project-features">{{projectfeatures}}</p>
+                    <p class="project-desc">{{projectdesc}}</p>
+                </div>
+                <div class="arrow" v-on:click="backwardSection">
+                    <p>></p>
+                </div>
+                <div class="arrow" v-on:click="loadSection">
+                    <p><</p>
+                </div>
         </div>
     </section>
 </section> 
