@@ -1,0 +1,29 @@
+.hidden-lightbox {
+
+    width: 0px;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: $second-bckgrnd;
+    transition: all 0.7s;
+    max-height: 0;
+    position: absolute;
+}
+
+.lightbox_icon {
+
+    background-color: transparent;
+    width: 0px;
+    height: 2px;
+    background-color:$text-color;
+    display: inline-block;
+    font-size:1.5em;
+    position: relative;
+    margin-top: 10px;
+    margin-left:20px;
+    top: 0;
+}
+
+.show-section {
+
+    max-height: 1200px;
+}
