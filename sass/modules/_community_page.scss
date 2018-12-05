@@ -17,6 +17,7 @@
     display:inline-block;
     background-color: $text-color; 
     border: 1px white solid;
+    width: 95%;
 }
 
 #projects-support {
@@ -29,6 +30,15 @@
     width: 85px;
     height: 90px;
     display: inline-block;
+
+    a {
+        opacity: 1;
+        transition: 0.8s opacity ease;
+    }
+    a:hover {
+
+        opacity: 0.7;
+    }
 }
 
 // Research and Evaluation Section Styles
@@ -38,44 +48,55 @@
     background-color: $second-bckgrnd;
     text-align: center;
 
-    h2 {
-
-        padding-top: 20px;
-        text-align: center;
-    }
-
-    .comm-box {
-
         h2 {
 
+            padding-top: 20px;
             text-align: center;
-            background-color: $second-bckgrnd;
-            padding:10px 20px 10px 20px;
-            display: inline-block;
-            border: 1.5px $text-color solid;
         }
 
+        .comm-box {
 
+            h2 {
+
+                text-align: center;
+                background-color: $second-bckgrnd;
+                padding:10px 20px 10px 20px;
+                display: inline-block;
+                border: 1.5px $text-color solid;
+                margin-top: 25%;
+                font-family: $main-font;
+            }
+
+
+        }
+
+    
+
+
+    .comm-box:nth-child(1) {
+
+        background: url("../images/interview-mobile.jpg") no-repeat;
+        background-position: center center;
+        background-size: cover;
+        min-height: 220px;
+        opacity: 1;
+        transition: 0.8s opacity ease;
     }
 
+    .comm-box:nth-child(2) {
 
+        background: url("../images/laptop-mobile.jpg") no-repeat;
+        background-position: center center;
+        background-size: cover;
+        min-height: 220px;
+        opacity: 1;
+        transition: 0.8s opacity ease;
+    }
 
+    .comm-box:nth-child(1):hover, .comm-box:nth-child(2):hover {
 
-.comm-box:nth-child(1) {
-
-    background: url("../images/interview-mobile.jpg") no-repeat;
-    background-position: center center;
-    background-size: cover;
-    min-height: 220px;
-}
-
-.comm-box:nth-child(2) {
-
-    background: url("../images/laptop-mobile.jpg") no-repeat;
-    background-position: center center;
-    background-size: cover;
-    min-height: 220px;
-}
+        opacity: 0.8;
+    }
 }
 .comm-box {
 
@@ -83,12 +104,28 @@
     min-height: 175px;
 }
 
+#prezi-sect {
+
+    .comm-pic-sect {
+
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    
+}
 
 .comm-pic-sect {
 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+
+    .comm-box.flex {
+
+        align-items: center;
+    }
 }
+
 
 // Presentation and Workshops Section
 
@@ -142,11 +179,15 @@
     #comm-work {
 
         display: flex;
+        max-width: 800px;
+        margin: 0 auto;
     }
 
     #lyac-pic {
 
         margin-right: 15px;
+        width: auto;
+        height: 250px;
     }
 }
 
@@ -155,6 +196,8 @@
     #comm-main {
 
         display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .lyac-box {
@@ -163,6 +206,8 @@
         margin-left: 50px;
         margin-right: 50px;
         margin-bottom:10px;
+        width: 65px;
+        height: 75px;
     }
 
     #projects-support {
@@ -245,6 +290,13 @@
         }
     
     
+    }
+}
+
+@media screen and (min-width: 1024px) {
+
+    #research-sect .comm-box h2 {
+        margin-top: 15%;
     }
 }
 

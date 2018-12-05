@@ -1,9 +1,7 @@
 .hidden-lightbox {
 
-    width: 0px;
     margin: 0 auto;
     overflow: hidden;
-    background-color: $second-bckgrnd;
     transition: all 0.7s;
     max-height: 0;
     position: absolute;
@@ -12,7 +10,6 @@
 .lightbox_icon {
 
     background-color: transparent;
-    width: 0px;
     height: 2px;
     background-color:$text-color;
     display: inline-block;
@@ -21,9 +18,91 @@
     margin-top: 10px;
     margin-left:20px;
     top: 0;
+    width: 0px;
+    transition: 0.6s color ease;
+}
+
+.lightbox_icon:hover {
+
+   color: $accent-color;
 }
 
 .show-section {
 
-    max-height: 1200px;
+    overflow: visible;
+    background-color: $second-bckgrnd;
+    min-height: 550px;
+    position: fixed;
+
 }
+
+/*Lightbox Text Styles */
+.project-text {
+
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+
+    .project-features {
+
+        font-weight: bold;
+    }
+
+    .project-desc {
+
+        text-align: left;
+    }
+
+    h2 {
+
+        font-size: 1.1em;
+        text-align: center;
+    }
+}
+
+#image-section {
+
+    text-align: center;
+    img {
+
+        width: 300px;
+    }
+}
+
+/* Lightbox Arrow Styles */
+
+.hidden-lightbox.lightbox.show-section {
+
+    div.first-arrow  {
+
+        font-size: 2.5em;
+        right: 15px;
+        top: 150px;
+        position: absolute;
+        color: $text-color;
+        transition: 0.4s color ease;
+
+        }
+
+
+    div.first-arrow:hover {
+
+        color:$accent-color;
+    }
+    
+    div.second-arrow {
+    
+        font-size: 2.5em;
+        left: 15px;
+        top: 150px;
+        position: absolute;
+        color: $text-color;
+        transition: 0.4s color ease;
+    }
+
+    div.second-arrow:hover {
+
+        color:$accent-color;
+    }
+}
+

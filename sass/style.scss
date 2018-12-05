@@ -10,6 +10,7 @@
 @import 'modules/_community_page';
 @import 'modules/_contactp';
 @import 'modules/_lightbox';
+@import 'modules/_aboutp';
 
 body {
 
@@ -24,6 +25,7 @@ h2 {
 
     text-align: center;
     font-weight: normal;
+    font-family: $accent-font;
 }
 
 .flex {
@@ -43,19 +45,6 @@ button {
     transition: 0.8s background-color ease;
 }
 
-.hidden-lightbox {
-
-    width: 80%;
-    margin: 0 auto;
-    overflow: hidden;
-    transition: all 0.7s;
-    max-height: 0;
-}
-
-.show-section {
-
-    max-height: 1200px;
-}
 
 
 button:hover {

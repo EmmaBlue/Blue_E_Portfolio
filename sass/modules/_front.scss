@@ -5,6 +5,7 @@
 
         font-family: $accent-font; 
         font-size: 1.75em;
+        text-align: left;
     }
 
     p {
@@ -23,6 +24,60 @@
     #emma-front {
 
         width: 100%;
+    }
+
+    #home-desc {
+
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #emma-sect {
+
+        margin-top: -50px;
+        margin-left: 90px;
+        margin-bottom: -5px;
+    }
+
+}
+
+@media screen and (min-width: 600px) {
+
+    #front-sect {
+
+        #home-flex {
+
+            display: flex;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+    
+        #emma-sect {
+    
+            margin-top: 0px;
+            margin-left: 0px;
+        }
+
+        #home-desc {
+
+            margin-top: 20px;
+        }
+
+
+    }
+}
+
+@media screen and (min-width: 768px) {
+
+    #front-sect {
+
+        #home-desc {
+
+            margin-right: -150px;
+            margin-top: 20px;
+        }
+
+
     }
 
 }

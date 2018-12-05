@@ -34,10 +34,7 @@ function get_all($pdo) {
     //Modify so actually secure
     $query = $pdo->prepare('SELECT 
     * FROM 
-        tbl_section_images l,
-        tbl_section s, 
-        tbl_images i
-       WHERE l.section_ID = s.section_ID AND i.images_ID = l.images_ID');
+    (tbl_section_images l LEFT JOIN tbl_section s ON l.section_ID = s.section_ID LEFT JOIN tbl_images i ON i.images_ID = l.images_ID) LEFT JOIN tbl_videos v ON v.video_ID = l.video_ID');
     // Execute statement with data so it's combined w/ compiled statement, not insecure SQL string
     $get_all = $query->execute([]);
 

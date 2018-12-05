@@ -1,0 +1,338 @@
+/* General About Styles*/
+
+.bold {
+
+    font-weight: bold;
+}
+
+.svg {
+
+    width: 20%;
+    //height: 100px;
+}
+
+#main-about {
+
+
+        h2 {
+    
+            font-family: $accent-font;
+            font-size: 1.25em;
+
+        }
+
+        a {
+
+            text-decoration: none;
+            color: $accent-color;
+            transition: 0.8s color ease;
+            -webkit-transition: 0.8s color ease;
+        }
+
+        a:hover {
+
+            color: $text-color;
+        }
+
+}
+
+/*About Description*/
+
+    #about-desc {
+
+        div {
+
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        #about-text {
+
+            padding-left: 25px;
+            padding-right: 25px;
+
+    
+        }
+
+    }
+
+    /*Fun Facts*/
+
+    #fun-facts {
+
+        #productivity-block, #obama-block, #poetry-block  {
+
+            display: flex;
+            padding-left: 20px;
+            padding-right: 25px;
+
+            .svg {
+
+                margin-right: 20px;
+                height: 100px;
+            }
+
+        }
+    }
+
+    /* Technical Skills Styles*/
+
+    #technical-skills {
+        max-height: 900px;
+        text-align: center;
+        margin: 0 auto;
+
+        .flex {
+
+            display: flex;
+            text-align: center;
+            justify-content: center;
+
+            #css-skills {
+
+                margin-right: 30px;
+            }
+
+            #js-skills {
+
+                margin-right: 30px;
+            }
+
+            .svg {
+
+                width: 75px;
+            }
+
+            .tighten {
+
+                line-height: 0px;
+            }
+        }
+    }
+
+/* Education Skills*/
+
+    #education {
+
+    
+    .flex {
+
+        display: flex;
+        justify-content: left;
+        padding-left: 20px;
+        padding-right: 20px;
+
+        .svg {
+
+            height: 100px;
+            margin-right: 20px;
+        }
+
+        div p:nth-child(1) {
+
+            line-height: 24px;
+        }
+    }
+
+}
+
+/* Experience Styles */
+
+#experience .flex {
+
+    padding-left: 20px;
+    padding-right: 20px;
+    .svg {
+
+        margin-right: 20px;
+        height: 100px;
+    }
+
+}
+
+.resume-list {
+
+    margin-left: -25px;
+    line-height: 20px;
+}
+
+
+/* Accomplishment Styles */
+
+#accomplishments .flex {
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    .svg {
+
+        height: 100px;
+        margin-right: 20px;
+    }
+}
+
+#buttons {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+
+    button:nth-child(1) {
+
+        margin-bottom: 10px;
+    }
+}
+
+/* Tablet Media Queries */
+
+
+@media screen and (min-width: 1200px) {
+
+    #main-about {
+
+        #about-text h2 {
+
+            font-size: 2em;
+        }
+
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+
+    #main-about {
+
+        #about-desc {
+
+            max-width: 600px;
+        }
+
+        #about-text h2 {
+
+            font-size: 1.25em;
+        }
+
+
+    }
+
+
+    #resume-area {
+
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 768px) {
+
+    #main-about {
+
+        h2 {
+
+            font-size: 1.5em;
+        }
+
+
+    }
+
+    .svg {
+
+        width: 30%;
+        margin-right: 0px;
+    }
+
+    #about-desc {
+
+        display: flex;
+        margin: 0 auto;
+    }
+
+    #fun-facts {
+
+        margin: 0 auto;
+        max-width: 1000px;
+
+        div {
+
+            display: flex;
+            margin: 0 auto;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        #productivity-block, #obama-block, #poetry-block  {
+
+            display: block;
+            text-align: center;
+            padding-left: 25px;
+            padding-right: 25px;
+
+            .svg {
+
+                margin-right: 0px;
+            }
+
+            p {
+                text-align: left;
+                margin-top: 0px;
+            }
+
+        }
+    }
+
+    #technical-skills {
+
+        margin-bottom: 40px;
+    }
+
+    #education, #experience, #accomplishments {
+
+        .svg {
+
+            width: 20%;
+        }
+    }
+
+    .resume-list li {
+
+        margin-bottom: 5px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+
+    #main-about {
+
+        #about-desc {
+
+            max-width: 800px;
+        }
+    }
+
+    #resume-area {
+
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+    }
+
+    #education .flex {
+
+        margin: 0 auto;
+        max-width: 700px;
+    }
+
+    #experience {
+
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    #accomplishments {
+
+        margin: 0 auto;
+        max-width: 700px;
+    }
+
+
+}
+
+
