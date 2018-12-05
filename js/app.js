@@ -33,21 +33,20 @@ const home = Vue.component('home-vue', {
     template: 
   `<section id="main-home"><section id="front-sect">
 <h2 class="hidden">Home Page</h2>
-<div class=flex>
-    <div>
+<div id="home-flex">
+    <div id="home-desc">
         <h2>Hi there!</h2>
         <p>I’m Emma Blue, a <span>front end developer</span> and <span>community organizer</span> with a passion for creating human centred solutions. </p>
         <button><router-link to="/projects">See My Work</router-link></button>
     </div>
-    <div>
-        <img id="emma-front" src="./images/emma-mobile.png" alt="Emma Blue">
+    <div id="emma-sect">
+        <img id="emma-front" srcset="./images/emma-mobile.png 318w, ./images/emma-desktop.png 634w" sizes="(max-width:599px) 320px, (min-width:600px) 630px" src="./images/emma-mobile.png" alt="Emma Blue">
     </div>
 </div>
 </section>
 <section id="project-sect">
   <div id="project-grid">
       <section class="work-box">
-      
       </section>
       <section class="work-box">
       </section>
@@ -63,10 +62,10 @@ const home = Vue.component('home-vue', {
 <section id="about-sect">
       <h2>About Me</h2>
        <div id="about-flex">
-          <img id="about-pic" src="./images/about-mobile.jpg">
+          <img id="about-pic" srcset="./images/about-mobile.jpg 295w, ./images/about-desktop.jpg 554w" sizes="(max-width:600px) 290px, (min-width:601px) 554px"/>
             <div>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin iaculis sapien sapien, ac interdum libero mollis id. Ut a nibh posuere, ullamcorper leo sed, mattis ligula. Sed iaculis ligula sem. Duis non sem ut urna tempus ullamcorper. Nullam vestibulum fringilla euismod. Morbi eleifend dui ligula, et commodo elit malesuada non. Sed at suscipit arcu. Suspendisse non suscipit neque, at gravida sem. Proin maximus, est in convallis aliquet, mi odio eleifend diam
+                    It's always been hard to put my interests in a box. I'm a web developer, designer and community organizer with four years of experience in project management, as well as a poet, theatre lover, and voracious reader. I love throwing myself into the work I do and drawing from different areas of my expertise to make something beautiful.
                 </p>
                 <button><router-link to="/about">Get to Know Me</router-link></button>
             </div>
@@ -74,12 +73,18 @@ const home = Vue.component('home-vue', {
   </section>
   <section id="comm-sect">
     <h2 class="hidden">Community</h2>
-    <p>You don’t have anything if you don’t have community.</p>
+    <div class="home-flex">
+        <img class="home-svg" alt="community" src="./images/community.svg">
+        <p>You don’t have anything if you don’t have community.</p>
+    </div>
     <button><router-link to="/community">See My Track Record</router-link></button>
   </section>
 <section id="contact-sect">
 <h2 class="hidden">Contact</h2>
-<p>Let’s get in touch!</p>
+    <div class="home-flex">
+        <img class="home-svg" alt="contact" src="./images/contact.svg">
+        <p>Let’s get in touch!</p>
+    </div>
 <button><router-link to="/contact">Contact Me</router-link></button>
 </section>
 </section>
@@ -91,18 +96,86 @@ const projects = Vue.component('projects-vue', {
 
         return {
 
-        
+            alldata: [],
+            sectiondata: [],
+            singlesectiondata : [],
+            arrowid : "",
+
+            projectname: "",
+            projectmobile : "",
+            projectfeatures : "",
+            projectdesc : "",
+            showDetails : false,
+            projectvid: ""
+
         }
 
     },
 
+    mounted : function() {
+            
+        //passing null in makes boolean false, pass into else statement in fetchSectionData
+        this.fetchSectionData(null);
+
+
+    },
     methods: {
 
-        showMedia: function(event){
-            // `this` inside methods points to the Vue instance
-            // `event` is the native DOM event
-            console.log('showMedia working!')
-    
+
+        loadSection(e) {
+
+            dataKey = e.target.getAttribute("data");
+            currentData = this.alldata.filter(tbl_section=> tbl_section.section_ID == dataKey);
+            this.projectname = currentData[0].section_name;
+            this.projectmobile = currentData[0].mobile_path;
+            this.projecttablet = currentData[0].tablet_path;
+            this.projectdesktop = currentData[0].desktop_path;
+            this.projectwide = currentData[0].wide_path;
+            this.projectfeatures= currentData[0].section_features;
+            this.projectdesc= currentData[0].section_desc;
+            this.showDetails = true;
+            if (currentData[0].section_ID == 7) {
+                this.projectvid = currentData[0].video_mobile_path;
+                console.log("if statement executed");
+            }
+            else {
+                this.projectvid = null;
+            }
+            return dataKey;
+
+            //setTimeout(function () {window.scrollTo(0,1200);}, 500);
+
+        },
+
+        backwardSection() {
+            // depending on datakey on section, when arrow clicked, make section ID - 1 
+            var getKey = getKey.bind(dataKey);
+            console.log(dataKey);
+
+        },
+
+        fetchSectionData(project) {
+            // IF TRUE                                                : IF FALSE
+            url = project ? `./includes/index.php?project=${project}` : './includes/index.php';
+
+            fetch(url) // pass in the one or many query
+            .then(res => res.json())
+            .then(data => {
+                // IF PROJECT TRUE
+                if (project) {
+
+                    //getting one movie, so use the single array
+                    this.sectiondata = data;
+                } else {
+                    // push all the video into the video array
+                    this.alldata = data;
+                }
+            })
+        },
+
+        closeSection(e) {
+            this.showDetails = false;
+
         }
 
     },
@@ -110,31 +183,49 @@ const projects = Vue.component('projects-vue', {
 template: `<section id="projectp-sect">
 <h2>Projects</h2>
 <div id="projects-gal">
-    <section class="project-box">
+    <section class="project-box" :data="1" v-on:click="loadSection">
     </section>
-    <section class="project-box">
+    <section class="project-box" :data="2" v-on:click="loadSection">
     </section>
-    <section class="project-box">
+    <section class="project-box" :data="3" v-on:click="loadSection">
     </section>
-    <section class="project-box">
+    <section class="project-box" :data="4" v-on:click="loadSection">
     </section>
-    <section class="project-box">
+    <section class="project-box" :data="5" v-on:click="loadSection">
     </section>
-    <section class="project-box">
+    <section class="project-box" :data="6" v-on:click="loadSection">
     </section>
-    <section class="project-box">
+    <section class="project-box" :data="7" v-on:click="loadSection">
     </section>
-    <section class="project-box">
+    <section class="project-box" :data="8" v-on:click="loadSection">
     </section>
+    <div class="hidden-lightbox lightbox" :class="{'show-section' : showDetails}">
+        <span v-on:click="closeSection" class="lightbox_icon">X</span>
+        <h2>{{projectname}}</h2>
+        <div v-if="projectname == 'Demo Reel'" id="video-section">
+            <video :src="'./video/' + projectvid"></video>
+        </div>
+        <div id="image-section">
+           <!--<img :alt="projectname" :srcset="'./images/' + projectmobile + ' 302w, ./images/' + projecttablet + ' 620w'" sizes="(max-width:600px) 302px, (min-width:601px) 620px">-->
+        </div>
+        <div class="first-arrow arrow" v-on:click="backwardSection">
+            <p>></p>
+        </div>
+        <div class="arrow second-arrow" v-on:click="loadSection">
+            <p><</p>
+        </div>
+        <div class="project-text">
+            <h2>Technical Features</h2>
+            <p class="project-features">{{projectfeatures}}</p>
+            <p class="project-desc">{{projectdesc}}</p>
+        </div>
+    </div>
 </div>
 </section>
 
 `});
 
-const about =  Vue.component('about-vue', { });
-
-const community = Vue.component('community-vue', {
-
+const about =  Vue.component('about-vue', { 
 
     data: function() {
 
@@ -150,27 +241,235 @@ const community = Vue.component('community-vue', {
 
     },
 
+    template: `
+    <section id="main-about">
+        <h2>About Me</h2>
+        <section id="about-desc">
+            <div>
+                <img srcset="./images/aboutp-mobile.png 222w, ./images/aboutp-desktop.png 292w" sizes="(max-width: 1023px) 220px,(min-width: 1024px) 290px">
+            </div>
+            <section id="about-text">
+                <h2>I love solving problems and making things happen.</h2>
+                <p><span class="bold">You know that friend who’s the first one to coordinate get togethers, help out when someone’s in dire straits, and rally the group around a cause?</span> That’s always been me.  I love finding a problem and working with others to solve it . It’s what I’ve been doing for the past four years in my work as the Director of Advocacy at the London Youth Advisory Council, and in my real-world design and web development projects. </p>
+            </section>
+        </section>
+        <section id="fun-facts">
+            <h2>Fun Facts</h2>
+            <div>
+                <section id="productivity-block">
+                    <img class="svg" src="./images/to-do.svg">
+                    <p>I’m obsessed with all things productivity. If you ever need to hear about the brilliance of David Allen’s <a href="https://gettingthingsdone.com/">Getting Things Done</a>, prepare for a lecture.</p>
+                </section>
+                <section id="obama-block">
+                    <img class="svg" src="./images/megaphone-thin.svg">
+                    <p>Community and technology have always been interwoven for me. My political awakening was on the Young Adults for Obama ning, back in 2008 when nings were a thing.</p>
+                </section>
+                <section id="poetry-block">
+                    <img class="svg" src="./images/guitar.svg">
+                    <p>I’ve never given up on being a Renaissance woman. I won Grand Slam Champ at <a href="http://www.londonpoetryslam.ca/">the London Poetry Slam</a> in 2015, and I plan on taking calculus for fun when I get the chance.</p>
+                </section>
+            </div>
+        </section>
+        <section id="technical-skills">
+            <h2>Technical Skills</h2>
+            <div class="flex">
+                <section id="css-skills">
+                    <img class="svg" src="./images/web-design.svg">
+                    <div>
+                        <p>CSS Grid</p>
+                        <p class="tighten">Bootstrap</p>
+                    </div>
+                </section>
+                <section id="js-skills">
+                    <img class="svg" src="./images/js-about.svg">
+                    <div>
+                        <p>GreenSock</p>
+                        <p class="tighten">Vue</p>
+                    </div>
+                </section>
+                <section id="server-skills">
+                    <img class="svg" src="./images/server.svg">
+                    <p>PHP</p>
+                </section>
+            </div>
+        </section>
+        <div id="resume-area"> 
+        <section id="education">
+            <h2>Education</h2>
+            <div class="flex">
+                <img class="svg" src="./images/book.svg">
+                <div>
+                    <p>Media Theory and Production / Interactive Media Design - April 2019</p>
+                    <p>4.0 GPA</p>
+                </div>
+            </div>
+        </section>
+        <section id="experience">
+            <h2>Work Experience</h2>
+            <div class="flex">
+                <img class="svg" src="./images/work.svg">
+                <div>
+                    <p>Director of Advocacy - London Youth Advisory Council</p>
+                    <p>May 2015 - current</p>
+                    <ul class="resume-list">
+                        <li>Manage a team of <span class="bold">15 youth volunteers</span> to design and           
+                        execute community projects</li>
+                        <li>Collaborate with <span class="bold">non-profits and government officials</span> to advocate on policy</li>
+                        <li>Coordinate an annual election with <span class="bold">30+</span> youth councillor applicants and <span class="bold">over 5000 voters</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section id="accomplishments">
+            <h2>Key Accomplishments</h2>
+            <div class="flex">
+                <img class="svg" src="./images/achievement.svg">
+                <div>
+                    <ul class="resume-list">
+                        <li>Generated <span class="bold">5 new member leads</span> in first two weeks of London Squash and Fitness Club website launch</li>
+                        <li>Co-led podcast project with web.isod.es to <span class="bold">interview mayoral candidates</span> and share election info online with youth <a href="https://kidsthesedays.london/">| kidsthesedays.london |</a> (October 2018)</li>
+                        <li>Presented at Association of Municipalities Conference <span class="bold">in Ottawa</span> (August 2018)</li>
+                        <li><span class="bold">Managed 2 staff members</span> to conduct interviews with youth for an evaluation contract commissioned by the City of London (September 2016 - January 2017)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        </div>
+        <section id="buttons">
+            <a target="_blank" href="https://drive.google.com/file/d/1pCzIIA1gSl58UtXOqOZ_nL1TcP2vwH1p/view?usp=sharing"><button>View My Colour Resume</button></a>
+            <a target="_blank" href="https://drive.google.com/file/d/1wHipQmG1XfSV2dU7Qogq2VB04NnjLjhz/view?usp=sharing"><button>View My Black & White Resume</button></a>
+        </section>
+    </section>`
+
+
+
+
+});
+
+const community = Vue.component('community-vue', {
+
+
+    data: function() {
+
+        return {
+
+            alldata: [],
+            sectiondata: [],
+            singlesectiondata : [],
+            arrowid : "",
+
+            projectname: "",
+            projectmobile : "",
+            projectfeatures : "",
+            projectdesc : "",
+            showDetails : false
+
+        
+        }
+
+    },
+
+    mounted : function() {
+            
+        //passing null in makes boolean false, pass into else statement in fetchMovieData
+        this.fetchSectionData(null);
+
+
+    },
+
+    methods: {
+
+        loadSection(e) {
+
+            dataKey = e.target.getAttribute("data");
+            currentData = this.alldata.filter(tbl_section=> tbl_section.section_ID == dataKey);
+            this.projectname = currentData[0].section_name;
+            this.projectmobile = currentData[0].mobile_path;
+            this.projectfeatures= currentData[0].section_features;
+            this.projectdesc= currentData[0].section_desc;
+            this.showDetails = true;
+            return dataKey;
+
+            //setTimeout(function () {window.scrollTo(0,1200);}, 500);
+
+        },
+
+        backwardSection() {
+            // depending on datakey on section, when arrow clicked, make section ID - 1 
+            var getKey = getKey.bind(dataKey);
+            console.log(dataKey);
+
+        },
+
+        fetchSectionData(project) {
+            // IF TRUE                                                : IF FALSE
+            url = project ? `./includes/index.php?project=${project}` : './includes/index.php';
+
+            fetch(url) // pass in the one or many query
+            .then(res => res.json())
+            .then(data => {
+                // IF PROJECT TRUE
+                if (project) {
+
+                    //getting one movie, so use the single array
+                    this.sectiondata = data;
+                } else {
+                    // push all the video into the video array
+                    this.alldata = data;
+                }
+            })
+        },
+
+        closeSection(e) {
+            this.showDetails = false;
+
+        }
+
+        
+    
+
+    },
+
     template: `<section id="main-community">
+    <h2>Community Work </h2>
 <section id="comm-main">
     <section id="comm-work">
-        <img src="./images/community-main.jpg" id="lyac-pic">
+    <img id="lyac-pic" srcset="./images/community-main-tablet.jpg 376w, ./images/community-main-tablet@2x.jpg 750w" sizes="(max-width:600px) 370px, (min-width:601px) 750px"/>
         <p>Over the past four years, I've worked as the Director of Advocacy at the London Youth Advisory Council. It's been one of the greatest opportunities I've ever received, and I've gotten the chance to support many incredible projects driven by youth - everything from lobbying for a discounted high school bus pass to supporting a peer support group for youth of colour.</p>
     </section>
     <section id="projects-support">
         <h2>Projects Supported</h2>
-        <div class="lyac-box"><img src="./images/girls-te.svg"></div>
-        <div class="lyac-box"><img src="./images/kids-these-days.svg"></div>
-        <div class="lyac-box"><img src="./images/interaction.svg"></div>
+        <div class="lyac-box"><a target="_blank" href="https://www.facebook.com/girlsinte/?jazoest=26510012287558854521169968908098481046557881036810311375708854541037467106105534548689769115115531089755103586510011912071102988645794866538895122735068734911474118705469687855116838477741011108756113755310269113103"><img src="./images/girls-te.svg"></a></div>
+        <div class="lyac-box"><a target="_blank" href="https://kidsthesedays.london/"><img src="./images/kids-these-days.svg"></a></div>
+        <div class="lyac-box"><a target="_blank" href="https://www.facebook.com/InterActionCollectiveOnt/?jazoest=26510012287558854521169968908098481046557881036810311375708854541037467106105534548689769115115531089755103586510011912071102988645794866538895122735068734911474118705469687855116838477741011108756113755310269113103"><img src="./images/interaction.svg"></a></div>
     </section>
 </section>
 <section id="research-sect">
     <h2>Research & Evaluation Projects</h2>
     <section class="comm-pic-sect">
-        <section class="comm-box">
+        <section class="comm-box" :data="9" v-on:click="loadSection">
             <h2>YPD Interviewing</h2>
         </section>
-        <div class="comm-box">
+        <section class="comm-box" :data="10" v-on:click="loadSection">
             <h2>Co-Op Evaluation</h2>
+        </section>
+        <div class="hidden-lightbox lightbox" :class="{'show-section' : showDetails}">
+                <h2 class="hidden">{{projectname}}</h2>
+                <span v-on:click="closeSection" class="lightbox_icon">X</span>
+                <div>
+                    <img :alt="projectname" :src="'./images/' + projectmobile">
+                </div>
+                <div class="project-text">
+                    <h2>Technical Features</h2>
+                    <p class="project-features">{{projectfeatures}}</p>
+                    <p class="project-desc">{{projectdesc}}</p>
+                </div>
+                <div class="arrow" v-on:click="backwardSection">
+                    <p>></p>
+                </div>
+                <div class="arrow" v-on:click="loadSection">
+                    <p><</p>
+                </div>
         </div>
     </section>
 </section> 
@@ -223,7 +522,7 @@ const contact = Vue.component('contact-vue', {
 
     template: ` <section id="contactp-sect">
 <h2>Contact</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin iaculis sapien sapien, ac interdum libero mollis id. </p>
+<p>Have a question or a concern? Want to work together on a coding project? Have an idea for a community project? Feel free to contact me!  </p>
 <div id="form-container">
 <form id="contact-form">
     <div class="contact-grid">

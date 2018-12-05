@@ -19,6 +19,8 @@
     
   
   }
+
+
     
    /* FLOATING NAVIGATION TOGGLE BUTTON */
   
@@ -300,4 +302,16 @@
       }
   
     }
+  
+    /* Header Styles */
+
+    @media screen and (min-width: 1024px) {
+
+      #main-header {
+
+        margin-bottom: -20px;
+      }
+
+    }
+
   

@@ -9,6 +9,8 @@
 @import 'modules/_projects_page';
 @import 'modules/_community_page';
 @import 'modules/_contactp';
+@import 'modules/_lightbox';
+@import 'modules/_aboutp';
 
 body {
 
@@ -23,6 +25,7 @@ h2 {
 
     text-align: center;
     font-weight: normal;
+    font-family: $accent-font;
 }
 
 .flex {
@@ -41,6 +44,8 @@ button {
     font-size: 1em;
     transition: 0.8s background-color ease;
 }
+
+
 
 button:hover {
 

@@ -14,6 +14,25 @@
         max-width: 500px;
         margin:0 auto;
         padding: 1em 1em;
+        padding-top: 10px;
     }
+
 }
+
+
 }
+
+.home-svg {
+
+    width: 20%;
+}
+
+@media screen and (min-width: 600px) {
+
+    .home-svg {
+
+        max-width: 75px;
+    }
+
+}
+
