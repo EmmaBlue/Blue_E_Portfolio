@@ -33,6 +33,7 @@
     background-color: $second-bckgrnd;
     min-height: 550px;
     position: fixed;
+    bottom: 0%;
 
 }
 
@@ -105,4 +106,33 @@
         color:$accent-color;
     }
 }
+
+/* Video Styles */
+
+.hidden-lightbox.lightbox.show-section div.hide-video-section {
+
+    display: none;
+}
+
+.hidden-lightbox.lightbox.show-section div.show-video-section {
+
+    display: block;
+}
+
+#videoElement {
+
+    width: 20%;
+}
+
+
+/* Media Queries for Lightbox */
+
+@media screen and (min-width: 600px) {
+
+    #lightbox-flex {
+
+        display: flex;
+    }
+}
+
 
