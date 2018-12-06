@@ -1,8 +1,10 @@
 
 
+
+
 // Define a new component called home
 
-//assign variable to vue component instead
+// Assign variable to vue component so it can be used by vue router
 
 const home = Vue.component('home-vue', { 
 
@@ -17,23 +19,39 @@ const home = Vue.component('home-vue', {
 
     methods: {
 
+
+
         responsiveImg: function(event){
             // `this` inside methods points to the Vue instance
             // `event` is the native DOM event
             console.log('responsiveImg working!')
     
-        }
+        },
 
-        
-        
+        animate (e) {
+
+            console.log("animate");
+            var currentScrollPosition = e.srcElement.scrollTop;
+            if (currentScrollPosition > this.scrollPosition) {
+                console.log("Scrolling down");
+            }
+            this.scrollPosition = currentScrollPosition;
+    
+            //Display element and animate it
+            //element.classList.remove("none");
+            //element.classList.add("animated");
+            //element.classList.add("fadeIn");
+        },
+
     
 
     },
     
     template: 
-  `<section id="main-home"><section id="front-sect">
+  `
+  <section id="main-home"><section id="front-sect">
 <h2 class="hidden">Home Page</h2>
-<div id="home-flex">
+<div class="animated fadeIn" v-on:scroll="animate" id="home-flex">
     <div id="home-desc">
         <h2>Hi there!</h2>
         <p>I’m Emma Blue, a <span>front end developer</span> and <span>community organizer</span> with a passion for creating human centred solutions. </p>
@@ -108,6 +126,8 @@ const projects = Vue.component('projects-vue', {
             showDetails : false,
             playActivate: false,
             projectvid: "",
+            projecttablet: "",
+            projectdesktop:"",
             videoplayer: "",
             vidon: false,
 
@@ -175,7 +195,9 @@ const projects = Vue.component('projects-vue', {
         loadSection(e) {
 
             dataKey = e.target.getAttribute("data");
+            //videoplayer = this.$refs.videoElement,
             currentData = this.alldata.filter(tbl_section=> tbl_section.section_ID == dataKey);
+            
             this.projectname = currentData[0].section_name;
             this.projectmobile = currentData[0].mobile_path;
             this.projecttablet = currentData[0].tablet_path;
@@ -234,7 +256,8 @@ const projects = Vue.component('projects-vue', {
 
     },
     
-template: `<section id="projectp-sect">
+template: `
+<section id="projectp-sect">
 <h2>Projects</h2>
 <div id="projects-gal">
     <section class="project-box" :data="1" v-on:click="loadSection">
@@ -463,8 +486,6 @@ const community = Vue.component('community-vue', {
             this.projectdesc= currentData[0].section_desc;
             this.showDetails = true;
             return dataKey;
-
-            //setTimeout(function () {window.scrollTo(0,1200);}, 500);
 
         },
 
@@ -732,12 +753,12 @@ template: `<section id="success-sect">
    });
 
 
-
   
   const app = new Vue({
      el: '#app',
      router,
      data: {
+        loading: false,
         socItems: [
 
             {link:"http://www.twitter.com", id: "twitter", class: "fab fa-twitter"},
@@ -750,18 +771,39 @@ template: `<section id="success-sect">
         
     }, 
 
+    created : function() {
+
+
+    },
+
     mounted : function() {
         // listen for when Vue is done building itself 
         console.log('mounted');
 
+
     },
 
     updated : function() {
-        // listen for when Vue icompletes its render cycle
+        // listen for when Vue completes its render cycle
         console.log('updated');
+
+
 
     },
     methods : {
 
+
     }
   });
+
+  // Making Loading Animation Work
+
+  router.beforeResolve((to, from, next) => {
+    app.loading = true;
+    next();
+  })
+
+
+  router.afterEach((to, from) => {
+    setTimeout(() => app.loading = false, 1000); // timeout for demo purposes
+  })

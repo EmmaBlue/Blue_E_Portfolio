@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router@3.0.2/dist/vue-router.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
     <link href="css/style.css" rel="stylesheet">
   
 </head>
@@ -17,7 +19,8 @@
   <body >
     <main id="app">
      <!-- router view will display the components we want based on route -->
-     <header id="main-header">
+     <section v-if="loading"  class="loading">Loading<span ref="dot1" class="dot">.</span><span ref="dot2" class="dot">.</span><span ref="dot3" class="dot">.</span><div id="preloader"></div></section>
+     <header v-else id="main-header">
         <section id="logo-sect">
           <h2 id="logo">Emma Jae <span id="big-blue">Blue</span></h2>
         </section>
