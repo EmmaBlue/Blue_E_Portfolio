@@ -13,7 +13,16 @@
     background-color: $text-color;
     min-width: 300px;
     min-height: 200px;
+    opacity: 1;
+    transition: 0.8s opacity ease;
 }
+
+.project-box:hover {
+
+    opacity: 0.6;
+}
+
+// Fix for Small Sized Desktop
 
 @media screen and (min-width: 900px) and (max-width: 1199px) {
 

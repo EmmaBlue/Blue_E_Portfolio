@@ -20,7 +20,7 @@
     #contact-form {
 
         padding-left: 40px;
-    padding-right: 50px;
+         padding-right: 50px;
     }
 
     #contact-grid {
@@ -31,7 +31,7 @@
 
     .field input, textarea {
 
-        min-width: 100%;
+        width: 100%;
         background-color: $text-color;
         border: 0px;
         padding: 10px;

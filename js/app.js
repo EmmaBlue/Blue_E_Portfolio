@@ -106,7 +106,10 @@ const projects = Vue.component('projects-vue', {
             projectfeatures : "",
             projectdesc : "",
             showDetails : false,
-            projectvid: ""
+            playActivate: false,
+            projectvid: "",
+            videoplayer: "",
+            vidon: false,
 
         }
 
@@ -121,6 +124,53 @@ const projects = Vue.component('projects-vue', {
     },
     methods: {
 
+        playVideo() {
+
+            console.log('load video initialized');
+
+    
+            this.vidon = true,
+            this.playActivate = true,
+            videoplayer = this.$refs.videoElement,
+            playPause = this.$refs.playpause,
+            rewind = this.$refs.rewind,
+            muteBtn = this.$refs.muteBtn,
+            videoplayer.volume = 0.6;
+
+            videoplayer.play();
+        },
+
+        togglePlay() {
+
+
+            if (videoplayer.paused) {
+                playPause.classList.add("fa-pause");
+                playPause.classList.remove("fa-play");
+                videoplayer.play();
+              } else {
+                playPause.classList.add("fa-play");
+                playPause.classList.remove("fa-pause");
+                videoplayer.pause();
+              }
+        },
+
+        rewind() {
+            videoplayer.currentTime = 0;
+          },
+
+        mute() {
+            if (videoplayer.muted) {
+              videoplayer.muted = false;
+              muteBtn.classList.remove("fa-volume-down");
+              muteBtn.classList.add("fa-volume-up");
+              videoplayer.volume = 0.6;
+            } else {
+              videoplayer.muted = true;
+              muteBtn.classList.remove("fa-volume-up");
+              muteBtn.classList.add("fa-volume-down");
+              videoplayer.volume = 0;
+            }
+          },
 
         loadSection(e) {
 
@@ -136,7 +186,6 @@ const projects = Vue.component('projects-vue', {
             this.showDetails = true;
             if (currentData[0].section_ID == 7) {
                 this.projectvid = currentData[0].video_mobile_path;
-                console.log("if statement executed");
             }
             else {
                 this.projectvid = null;
@@ -175,6 +224,11 @@ const projects = Vue.component('projects-vue', {
 
         closeSection(e) {
             this.showDetails = false;
+            this.playActivate = false;
+            videoplayer = this.$refs.videoElement,
+            videoplayer.pause();
+            this.vidon = false;
+
 
         }
 
@@ -199,28 +253,48 @@ template: `<section id="projectp-sect">
     </section>
     <section class="project-box" :data="8" v-on:click="loadSection">
     </section>
-    <div class="hidden-lightbox lightbox" :class="{'show-section' : showDetails}">
-        <span v-on:click="closeSection" class="lightbox_icon">X</span>
+    
+</div>
+<div class="hidden-lightbox lightbox" :class="{'show-section' : showDetails}">
+        <span v-on:click="closeSection" class="lightbox_icon">x</span>
         <h2>{{projectname}}</h2>
-        <div v-if="projectname == 'Demo Reel'" id="video-section">
-            <video :src="'./video/' + projectvid"></video>
-        </div>
-        <div id="image-section">
-           <!--<img :alt="projectname" :srcset="'./images/' + projectmobile + ' 302w, ./images/' + projecttablet + ' 620w'" sizes="(max-width:600px) 302px, (min-width:601px) 620px">-->
-        </div>
-        <div class="first-arrow arrow" v-on:click="backwardSection">
-            <p>></p>
-        </div>
-        <div class="arrow second-arrow" v-on:click="loadSection">
-            <p><</p>
-        </div>
-        <div class="project-text">
-            <h2>Technical Features</h2>
-            <p class="project-features">{{projectfeatures}}</p>
-            <p class="project-desc">{{projectdesc}}</p>
+        <div id="lightbox-flex">
+            <div>
+                <div v-if="vidon == false" v-on:click="playVideo" id="image-section">
+                    <img :alt="projectname" :srcset="'./images/' + projectmobile + ' 300w, ./images/' + projecttablet + ' 637w'" sizes="(max-width:600px) 630px, (min-width:601px) 300px">
+                    <div v-if="projectname == 'Demo Reel'" ref="playBtn" id='playBtn'><i class="far fa-play-circle"></i></div>
+                </div>
+                <div class="first-arrow arrow" v-on:click="backwardSection">
+                    <p>></p>
+                </div>
+                <div class="arrow second-arrow" v-on:click="loadSection">
+                    <p><</p>
+                </div>
+                <div v-if="projectname == 'Demo Reel'" class="videoScreen hide-video-section" :class="{'show-video-section' : playActivate}">
+                    <video ref="videoElement" id="videoElement">
+                        <source :src="'./video/' + projectvid">
+                    </video>
+                  <div class="controls">
+                    <ul>
+                      <li v-on:click="rewind" ref="rewind" class="rewindToStart">
+                            <i class="fas fa-fast-backward"></i>
+                        </li>
+                      <li v-on:click="togglePlay" class="play-pause">
+                            <i ref="playpause" class="fas fa-pause"></i>
+                          </li>
+                      <li id="muteBtn"><i v-on:click="mute" ref="muteBtn" class="fas fa-volume-up"></i></li>
+                      <li><i class="far fa-volume-mute" style="display: none;"></i></li>
+                    </ul>
+                  </div>
+                </div>
+            </div>
+            <div class="project-text">
+                <h2>Technical Features</h2>
+                <p class="project-features">{{projectfeatures}}</p>
+                <p class="project-desc">{{projectdesc}}</p>
+            </div>
         </div>
     </div>
-</div>
 </section>
 
 `});
@@ -524,7 +598,7 @@ const contact = Vue.component('contact-vue', {
 <h2>Contact</h2>
 <p>Have a question or a concern? Want to work together on a coding project? Have an idea for a community project? Feel free to contact me!  </p>
 <div id="form-container">
-<form id="contact-form">
+<form id="contact-form" action="./includes/sendEmail.php" method="POST">
     <div class="contact-grid">
         <div v-for="field in contactFields" class="field">
             <label class="hidden" for="field.name">{{field.name}}</label>
@@ -541,13 +615,105 @@ const contact = Vue.component('contact-vue', {
 
 
 });
+
+/* Contact Form Redirects */ 
+
+const error = Vue.component('error-vue', { 
+
+    data: function() {
+
+        return {
+
+
+        }
+
+    },
+
+    mounted : function() {
+
+
+    },
+    methods: {
+
+
+    },
+    
+template: `<section id="error-sect">
+<h2>Oops!</h2>
+<img alt="error" src="./images/error.svg">
+<h2>Your message contains an error. Please fill it out again and I'll get back to you as soon as I can!</h2>
+<a href="/Blue_E_Portfolio/#/contact"><button>Go Back to Contact Page</button></a>
+</section>
+
+`});
+
+const emailerror = Vue.component('email-error-vue', { 
+
+    data: function() {
+
+        return {
+
+
+        }
+
+    },
+
+    mounted : function() {
+
+
+    },
+    methods: {
+
+
+    },
+    
+template: `<section id="email-error-sect">
+<h2>Oops!</h2>
+<img alt="error" src="./images/error.svg">
+<h2>Your message contains an invalid email address. Please fill it out again and I'll get back to you as soon as I can!</h2>
+<a href="/Blue_E_Portfolio/#/contact"><button>Go Back to Contact Page</button></a>
+</section>
+
+`});
+
+
+const success = Vue.component('success-vue', { 
+
+    data: function() {
+
+        return {
+
+
+        }
+
+    },
+
+    mounted : function() {
+
+
+    },
+    methods: {
+
+
+    },
+    
+template: `<section id="success-sect">
+<h2>Looking forward to connecting!</h2>
+<img alt="success" src="./images/success.svg">
+<h2>Your message's been sent! I'll get back to you very soon.</h2>
+</section>
+
+`});
   
   
   const routes = [{path: '/', component: home},
     {path: '/projects', component: projects},
     {path: '/about', component: about},
     {path: '/community', component: community},
-    {path: '/contact', component: contact}]
+    {path: '/contact', component: contact},
+    {path: '/error', component: error},
+    {path: '/email-error', component: emailerror},
+    {path: '/success', component: success}]
     /*
     {path: '/community', component: CommApp},
     {path: '/contact', component: ContactApp},
@@ -566,6 +732,7 @@ const contact = Vue.component('contact-vue', {
    });
 
 
+
   
   const app = new Vue({
      el: '#app',
@@ -580,13 +747,6 @@ const contact = Vue.component('contact-vue', {
 
           ],
 
-          contactFields: [
-
-            {label: 'Name', type:'text', class: 'input', name: 'name', placeholder:'Your First Name'},
-            {label: 'Email', type:'text', class: 'input', name: 'email', placeholder:'Your Email Address'},
-            {label: 'Referral', type:'text', class: 'input', name: 'referral', placeholder:'How Did You Hear About Me?'},
-            {label: 'Subject', type:'text', class: 'input', name: 'subject', placeholder:'Subject'}
-          ]
         
     }, 
 
