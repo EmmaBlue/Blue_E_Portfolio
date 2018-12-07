@@ -15,22 +15,18 @@
         $user_message = htmlentities($_POST['message']);
         $user_email = htmlentities($_POST['email']);
 
-        //If there's email address empty, show error
-        if(empty($_POST['email'])){
+        //If there's no message or email address, show error
+        if(empty($_POST['email']) || empty($_POST['message']) ){
             header('Location: /Blue_E_Portfolio/#/error');
             exit();
         }
 
-        //If email address doesn't include an @ sign 
-        if (strpos($_POST['email'], '@') == false) {
-            header('Location: /Blue_E_Portfolio/#/email-error');
+        //If email address is invalid
+
+        if (filter_var($user_email, FILTER_VALIDATE_EMAIL) === false) {
+			header('Location: /Blue_E_Portfolio/#/email-error');
             exit();
         }
-
-        if (!isset($_POST['message']) || !isset($_POST['email'])){
-            header('Location: /Blue_E_Portfolio/#/error');
-            exit();
-          }
 
         $to = 'emmajaeblue@gmail.com';
         //use html entities to protect from SQL injection
@@ -43,11 +39,11 @@
 
         //mail($to, $subject, $message);
 
-        /*if(fake_mail($to, $subject, $message, $headers)){
+        if(fake_mail($to, $subject, $message, $headers)){
             #var_dump($_POST);
             header('Location: /Blue_E_Portfolio/#/success');
             exit();
-        }*/
+        }
 
        // echo($user_subject);
 
