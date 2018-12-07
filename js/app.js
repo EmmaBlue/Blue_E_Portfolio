@@ -1,8 +1,10 @@
 
 
+
+
 // Define a new component called home
 
-//assign variable to vue component instead
+// Assign variable to vue component so it can be used by vue router
 
 const home = Vue.component('home-vue', { 
 
@@ -17,23 +19,39 @@ const home = Vue.component('home-vue', {
 
     methods: {
 
+
+
         responsiveImg: function(event){
             // `this` inside methods points to the Vue instance
             // `event` is the native DOM event
             console.log('responsiveImg working!')
     
-        }
+        },
 
-        
-        
+        animate (e) {
+
+            console.log("animate");
+            var currentScrollPosition = e.srcElement.scrollTop;
+            if (currentScrollPosition > this.scrollPosition) {
+                console.log("Scrolling down");
+            }
+            this.scrollPosition = currentScrollPosition;
+    
+            //Display element and animate it
+            //element.classList.remove("none");
+            //element.classList.add("animated");
+            //element.classList.add("fadeIn");
+        },
+
     
 
     },
     
     template: 
-  `<section id="main-home"><section id="front-sect">
+  `
+  <section id="main-home"><section id="front-sect">
 <h2 class="hidden">Home Page</h2>
-<div id="home-flex">
+<div class="animated fadeIn delay-1s" v-on:scroll="animate" id="home-flex">
     <div id="home-desc">
         <h2>Hi there!</h2>
         <p>I’m Emma Blue, a <span>front end developer</span> and <span>community organizer</span> with a passion for creating human centred solutions. </p>
@@ -108,6 +126,8 @@ const projects = Vue.component('projects-vue', {
             showDetails : false,
             playActivate: false,
             projectvid: "",
+            projecttablet: "",
+            projectdesktop:"",
             videoplayer: "",
             vidon: false,
 
@@ -175,7 +195,9 @@ const projects = Vue.component('projects-vue', {
         loadSection(e) {
 
             dataKey = e.target.getAttribute("data");
+            //videoplayer = this.$refs.videoElement,
             currentData = this.alldata.filter(tbl_section=> tbl_section.section_ID == dataKey);
+            
             this.projectname = currentData[0].section_name;
             this.projectmobile = currentData[0].mobile_path;
             this.projecttablet = currentData[0].tablet_path;
@@ -234,7 +256,8 @@ const projects = Vue.component('projects-vue', {
 
     },
     
-template: `<section id="projectp-sect">
+template: `
+<section class="animated fadeIn delay-1s" id="projectp-sect">
 <h2>Projects</h2>
 <div id="projects-gal">
     <section class="project-box" :data="1" v-on:click="loadSection">
@@ -253,21 +276,19 @@ template: `<section id="projectp-sect">
     </section>
     <section class="project-box" :data="8" v-on:click="loadSection">
     </section>
-    
-</div>
-<div class="hidden-lightbox lightbox" :class="{'show-section' : showDetails}">
+    <div class="hidden-lightbox lightbox" :class="{'show-section' : showDetails}">
         <span v-on:click="closeSection" class="lightbox_icon">x</span>
         <h2>{{projectname}}</h2>
         <div id="lightbox-flex">
             <div>
                 <div v-if="vidon == false" v-on:click="playVideo" id="image-section">
-                    <img :alt="projectname" :srcset="'./images/' + projectmobile + ' 300w, ./images/' + projecttablet + ' 637w'" sizes="(max-width:600px) 630px, (min-width:601px) 300px">
+                    <img :alt="projectname" :srcset="'./images/' + projectmobile + ' 300w, ./images/' + projecttablet + ' 637w,' " sizes="(max-width:600px) 630px, (min-width:601px) 300px">
                     <div v-if="projectname == 'Demo Reel'" ref="playBtn" id='playBtn'><i class="far fa-play-circle"></i></div>
                 </div>
-                <div class="first-arrow arrow" v-on:click="backwardSection">
+                <div class="first-arrow arrow hidden" v-on:click="backwardSection">
                     <p>></p>
                 </div>
-                <div class="arrow second-arrow" v-on:click="loadSection">
+                <div class="arrow second-arrow hidden" v-on:click="loadSection">
                     <p><</p>
                 </div>
                 <div v-if="projectname == 'Demo Reel'" class="videoScreen hide-video-section" :class="{'show-video-section' : playActivate}">
@@ -295,6 +316,8 @@ template: `<section id="projectp-sect">
             </div>
         </div>
     </div>
+    
+</div>
 </section>
 
 `});
@@ -316,7 +339,7 @@ const about =  Vue.component('about-vue', {
     },
 
     template: `
-    <section id="main-about">
+    <section class="animated fadeIn delay-1s" id="main-about">
         <h2>About Me</h2>
         <section id="about-desc">
             <div>
@@ -464,8 +487,6 @@ const community = Vue.component('community-vue', {
             this.showDetails = true;
             return dataKey;
 
-            //setTimeout(function () {window.scrollTo(0,1200);}, 500);
-
         },
 
         backwardSection() {
@@ -504,7 +525,7 @@ const community = Vue.component('community-vue', {
 
     },
 
-    template: `<section id="main-community">
+    template: `<section id="main-community" class="animated fadeIn delay-1s">
     <h2>Community Work </h2>
 <section id="comm-main">
     <section id="comm-work">
@@ -538,10 +559,10 @@ const community = Vue.component('community-vue', {
                     <p class="project-features">{{projectfeatures}}</p>
                     <p class="project-desc">{{projectdesc}}</p>
                 </div>
-                <div class="arrow" v-on:click="backwardSection">
+                <div class="arrow hidden" v-on:click="backwardSection">
                     <p>></p>
                 </div>
-                <div class="arrow" v-on:click="loadSection">
+                <div class="arrow hidden" v-on:click="loadSection">
                     <p><</p>
                 </div>
         </div>
@@ -594,7 +615,7 @@ const contact = Vue.component('contact-vue', {
 
     },
 
-    template: ` <section id="contactp-sect">
+    template: ` <section id="contactp-sect" class="animated fadeIn delay-1s">
 <h2>Contact</h2>
 <p>Have a question or a concern? Want to work together on a coding project? Have an idea for a community project? Feel free to contact me!  </p>
 <div id="form-container">
@@ -732,12 +753,12 @@ template: `<section id="success-sect">
    });
 
 
-
   
   const app = new Vue({
      el: '#app',
      router,
      data: {
+        loading: false,
         socItems: [
 
             {link:"http://www.twitter.com", id: "twitter", class: "fab fa-twitter"},
@@ -750,18 +771,39 @@ template: `<section id="success-sect">
         
     }, 
 
+    created : function() {
+
+
+    },
+
     mounted : function() {
         // listen for when Vue is done building itself 
         console.log('mounted');
 
+
     },
 
     updated : function() {
-        // listen for when Vue icompletes its render cycle
+        // listen for when Vue completes its render cycle
         console.log('updated');
+
+
 
     },
     methods : {
 
+
     }
   });
+
+  // Making Loading Animation Work
+
+  router.beforeResolve((to, from, next) => {
+    app.loading = true;
+    next();
+  })
+
+
+  router.afterEach((to, from) => {
+    setTimeout(() => app.loading = false, 1000); // timeout for demo purposes
+  })

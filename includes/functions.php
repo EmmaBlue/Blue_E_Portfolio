@@ -30,16 +30,13 @@ function get_single_section($pdo, $project) {
 
 function get_all($pdo) {
     $arr = [];
-    //Make prepared statement 
-    //Modify so actually secure
-    $query = $pdo->prepare('SELECT 
+    $query = 'SELECT 
     * FROM 
-    (tbl_section_images l LEFT JOIN tbl_section s ON l.section_ID = s.section_ID LEFT JOIN tbl_images i ON i.images_ID = l.images_ID) LEFT JOIN tbl_videos v ON v.video_ID = l.video_ID');
-    // Execute statement with data so it's combined w/ compiled statement, not insecure SQL string
-    $get_all = $query->execute([]);
+    (tbl_section_images l LEFT JOIN tbl_section s ON l.section_ID = s.section_ID LEFT JOIN tbl_images i ON i.images_ID = l.images_ID) LEFT JOIN tbl_videos v ON v.video_ID = l.video_ID';
+    $get_all = $pdo->query($query);
 
     //Parsing data from associative array 
-    while($row = $query->fetch(PDO::FETCH_ASSOC)) {
+    while($row = $get_all->fetch(PDO::FETCH_ASSOC)) {
 
         $arr[] = $row;
     }

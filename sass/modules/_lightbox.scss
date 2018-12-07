@@ -13,7 +13,7 @@
     height: 2px;
     background-color:$text-color;
     display: inline-block;
-    font-size:1.5em;
+    font-size:2.5em;
     position: relative;
     margin-top: 10px;
     margin-left:20px;
@@ -34,6 +34,7 @@
     min-height: 550px;
     position: fixed;
     bottom: 0%;
+    margin:0 auto;
 
 }
 
@@ -66,7 +67,7 @@
     text-align: center;
     img {
 
-        width: 300px;
+        width: 80%;
     }
 }
 
@@ -129,9 +130,50 @@
 
 @media screen and (min-width: 600px) {
 
+    .show-section {
+
+        bottom: auto;
+    
+    }
+
     #lightbox-flex {
 
         display: flex;
+        padding-left: 10%;
+        padding-right: 10%;
+        padding-top: 50px;
+    }
+
+    #image-section {
+
+        img {
+    
+            width: auto;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+
+    .project-text {
+
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    #lightbox-flex {
+
+        div {
+
+            margin-right: 25px;
+        }
+    }
+}
+
+@media screen and (min-width: 1280px) {
+
+    .show-section {
+
+        min-height: 410px;
     }
 }
 
