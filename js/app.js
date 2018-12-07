@@ -51,7 +51,7 @@ const home = Vue.component('home-vue', {
   `
   <section id="main-home"><section id="front-sect">
 <h2 class="hidden">Home Page</h2>
-<div class="animated fadeIn" v-on:scroll="animate" id="home-flex">
+<div class="animated fadeIn delay-1s" v-on:scroll="animate" id="home-flex">
     <div id="home-desc">
         <h2>Hi there!</h2>
         <p>I’m Emma Blue, a <span>front end developer</span> and <span>community organizer</span> with a passion for creating human centred solutions. </p>
@@ -257,7 +257,7 @@ const projects = Vue.component('projects-vue', {
     },
     
 template: `
-<section id="projectp-sect">
+<section class="animated fadeIn delay-1s" id="projectp-sect">
 <h2>Projects</h2>
 <div id="projects-gal">
     <section class="project-box" :data="1" v-on:click="loadSection">
@@ -276,21 +276,19 @@ template: `
     </section>
     <section class="project-box" :data="8" v-on:click="loadSection">
     </section>
-    
-</div>
-<div class="hidden-lightbox lightbox" :class="{'show-section' : showDetails}">
+    <div class="hidden-lightbox lightbox" :class="{'show-section' : showDetails}">
         <span v-on:click="closeSection" class="lightbox_icon">x</span>
         <h2>{{projectname}}</h2>
         <div id="lightbox-flex">
             <div>
                 <div v-if="vidon == false" v-on:click="playVideo" id="image-section">
-                    <img :alt="projectname" :srcset="'./images/' + projectmobile + ' 300w, ./images/' + projecttablet + ' 637w'" sizes="(max-width:600px) 630px, (min-width:601px) 300px">
+                    <img :alt="projectname" :srcset="'./images/' + projectmobile + ' 300w, ./images/' + projecttablet + ' 637w,' " sizes="(max-width:600px) 630px, (min-width:601px) 300px">
                     <div v-if="projectname == 'Demo Reel'" ref="playBtn" id='playBtn'><i class="far fa-play-circle"></i></div>
                 </div>
-                <div class="first-arrow arrow" v-on:click="backwardSection">
+                <div class="first-arrow arrow hidden" v-on:click="backwardSection">
                     <p>></p>
                 </div>
-                <div class="arrow second-arrow" v-on:click="loadSection">
+                <div class="arrow second-arrow hidden" v-on:click="loadSection">
                     <p><</p>
                 </div>
                 <div v-if="projectname == 'Demo Reel'" class="videoScreen hide-video-section" :class="{'show-video-section' : playActivate}">
@@ -318,6 +316,8 @@ template: `
             </div>
         </div>
     </div>
+    
+</div>
 </section>
 
 `});
@@ -339,7 +339,7 @@ const about =  Vue.component('about-vue', {
     },
 
     template: `
-    <section id="main-about">
+    <section class="animated fadeIn delay-1s" id="main-about">
         <h2>About Me</h2>
         <section id="about-desc">
             <div>
@@ -525,7 +525,7 @@ const community = Vue.component('community-vue', {
 
     },
 
-    template: `<section id="main-community">
+    template: `<section id="main-community" class="animated fadeIn delay-1s">
     <h2>Community Work </h2>
 <section id="comm-main">
     <section id="comm-work">
@@ -559,10 +559,10 @@ const community = Vue.component('community-vue', {
                     <p class="project-features">{{projectfeatures}}</p>
                     <p class="project-desc">{{projectdesc}}</p>
                 </div>
-                <div class="arrow" v-on:click="backwardSection">
+                <div class="arrow hidden" v-on:click="backwardSection">
                     <p>></p>
                 </div>
-                <div class="arrow" v-on:click="loadSection">
+                <div class="arrow hidden" v-on:click="loadSection">
                     <p><</p>
                 </div>
         </div>
@@ -615,7 +615,7 @@ const contact = Vue.component('contact-vue', {
 
     },
 
-    template: ` <section id="contactp-sect">
+    template: ` <section id="contactp-sect" class="animated fadeIn delay-1s">
 <h2>Contact</h2>
 <p>Have a question or a concern? Want to work together on a coding project? Have an idea for a community project? Feel free to contact me!  </p>
 <div id="form-container">
