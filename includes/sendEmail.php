@@ -1,14 +1,5 @@
 <?php
 
-    function fake_mail($to,$subject,$message,$headers) {
-
-        #echo '==== Fake Emails ===='.PHP_EOL;
-        #echo 'Email To: '.$to.PHP_EOL;
-        #echo 'Subject: '.$subject.PHP_EOL;
-        #echo 'Message: '.$message.PHP_EOL;
-        #echo '====Emails End ==='.PHP_EOL;
-        return true;
-    }
     function send_email(){
 
         $user_subject = htmlentities($_POST['subject']);
@@ -39,8 +30,7 @@
 
         //mail($to, $subject, $message);
 
-        if(fake_mail($to, $subject, $message, $headers)){
-            #var_dump($_POST);
+        if(mail($to, $subject, $message, $headers)){
             header('Location: /Blue_E_Portfolio/#/success');
             exit();
         }
@@ -50,5 +40,7 @@
     }
 
     send_email();
+    header("Access-Control-Allow-Origin: *");
+    header('Content-Type:application/json;charset=UTF-8');
 
 ?>

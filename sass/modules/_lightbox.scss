@@ -126,15 +126,20 @@
 }
 
 
-/* Media Queries for Lightbox */
+ /*Media Queries for Lightbox */
 
 @media screen and (min-width: 600px) {
 
     .show-section {
 
-        bottom: auto;
+        //bottom: 0%;
+
     
     }
+}
+
+@media screen and (min-width: 1024px) {
+
 
     #lightbox-flex {
 
@@ -159,22 +164,11 @@
 
         padding-left: 50px;
         padding-right: 50px;
+        max-width: 300px;
     }
-    #lightbox-flex {
 
-        div {
-
-            margin-right: 25px;
-        }
-    }
 }
 
-@media screen and (min-width: 1280px) {
 
-    .show-section {
-
-        min-height: 410px;
-    }
-}
 
 

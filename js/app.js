@@ -282,7 +282,7 @@ template: `
         <div id="lightbox-flex">
             <div>
                 <div v-if="vidon == false" v-on:click="playVideo" id="image-section">
-                    <img :alt="projectname" :srcset="'./images/' + projectmobile + ' 300w, ./images/' + projecttablet + ' 637w,' " sizes="(max-width:600px) 630px, (min-width:601px) 300px">
+                    <img :alt="projectname" :srcset="'./images/' + projectmobile + ' 300w, ./images/' + projecttablet + ' 637w'" sizes="(max-width:600px) 300px, (min-width:601px) 630px">
                     <div v-if="projectname == 'Demo Reel'" ref="playBtn" id='playBtn'><i class="far fa-play-circle"></i></div>
                 </div>
                 <div class="first-arrow arrow hidden" v-on:click="backwardSection">
