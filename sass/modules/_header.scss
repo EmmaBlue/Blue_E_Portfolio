@@ -1,9 +1,39 @@
 /*LOGO STYLES*/
 
+@media screen and (min-width: 600px) {
+
+  #logo-sect {
+
+    margin-bottom: 75px;
+
+    #monogram {
+
+      margin-right: 15px;
+    }
+  }
+
+
+}
+
 #logo-sect {
 
-    margin: 0 auto;
-    max-width: 200px;
+  margin: 0 auto;
+  text-align: center;
+  max-width: 200px;
+
+    #monogram {
+
+      font-size: 2em;
+      margin-bottom: 0px;
+      background-color: #B7E1EA;
+      padding: 10px 15px 10px 15px;
+      border: 1px solid #536060;
+      border-radius: 50%;
+      display: inline-block;
+      text-align: center;
+      margin-left: 0%;
+
+    }
   }
   
   #big-blue {
@@ -17,8 +47,10 @@
     font-size: 1.85em;
     text-align: center;
     
-  
+
   }
+
+
 
 
     
@@ -309,7 +341,7 @@
 
       #main-header {
 
-        margin-bottom: -20px;
+        margin-bottom: 20px;
       }
 
     }

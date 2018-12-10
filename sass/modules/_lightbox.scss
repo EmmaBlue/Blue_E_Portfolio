@@ -2,9 +2,39 @@
 
     margin: 0 auto;
     overflow: hidden;
-    transition: all 0.7s;
+   transition: all 0.7s;
     max-height: 0;
     position: absolute;
+}
+
+#research-lightbox.show-section {
+
+    //min-height: 750px;
+    position: absolute;
+    bottom: auto;
+}
+
+#projects-lightbox.show-section {
+
+    //min-height: 750px;
+    bottom: -30%;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .image-section #research-image {
+        width: 60%;
+    }
+
+}
+
+#playBtn {
+
+    i {
+
+        font-size: 2em;
+        margin-top: 10px;
+    }
 }
 
 .lightbox_icon {
@@ -31,10 +61,11 @@
 
     overflow: visible;
     background-color: $second-bckgrnd;
-    min-height: 550px;
+    min-height: 750px;
     position: fixed;
-    bottom: 0%;
-    margin:0 auto;
+    //bottom: -10%;
+    margin: 0 auto;
+    z-index: 100;
 
 }
 
@@ -62,7 +93,7 @@
     }
 }
 
-#image-section {
+.image-section {
 
     text-align: center;
     img {
@@ -122,33 +153,67 @@
 
 #videoElement {
 
-    width: 20%;
+    width: 100%;
+}
+
+.controls {
+
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+
+    ul {
+
+        display: inline-block;
+        margin: 0 auto;
+
+        li {
+
+            display: inline-block;
+            margin-right: 20px;
+
+            i {
+
+                font-size: 3em;
+                margin-top: 50px;
+            }
+        }
+    }
+    
 }
 
 
-/* Media Queries for Lightbox */
+ /*Media Queries for Lightbox */
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 768px) {
 
     .show-section {
 
         bottom: auto;
+        width: 100%;
+        position: absolute;
+
     
     }
+}
 
-    #lightbox-flex {
+@media screen and (min-width: 1024px) {
+
+
+    .lightbox-flex {
 
         display: flex;
-        padding-left: 10%;
-        padding-right: 10%;
-        padding-top: 50px;
+        padding-top: 0px;
+        align-items: center;
+        margin: 0 auto;
+        justify-content: center;
     }
 
-    #image-section {
+    .image-section {
 
         img {
     
-            width: auto;
+            width: 80%;
         }
     }
 }
@@ -159,22 +224,11 @@
 
         padding-left: 50px;
         padding-right: 50px;
+        max-width: 300px;
     }
-    #lightbox-flex {
 
-        div {
-
-            margin-right: 25px;
-        }
-    }
 }
 
-@media screen and (min-width: 1280px) {
 
-    .show-section {
-
-        min-height: 410px;
-    }
-}
 
 

@@ -1,14 +1,5 @@
 <?php
 
-    function fake_mail($to,$subject,$message,$headers) {
-
-        #echo '==== Fake Emails ===='.PHP_EOL;
-        #echo 'Email To: '.$to.PHP_EOL;
-        #echo 'Subject: '.$subject.PHP_EOL;
-        #echo 'Message: '.$message.PHP_EOL;
-        #echo '====Emails End ==='.PHP_EOL;
-        return true;
-    }
     function send_email(){
 
         $user_subject = htmlentities($_POST['subject']);
@@ -17,18 +8,18 @@
 
         //If there's no message or email address, show error
         if(empty($_POST['email']) || empty($_POST['message']) ){
-            header('Location: /Blue_E_Portfolio/#/error');
+            header('Location: http://emmajaeblue.com/#/error');
             exit();
         }
 
         //If email address is invalid
 
         if (filter_var($user_email, FILTER_VALIDATE_EMAIL) === false) {
-			header('Location: /Blue_E_Portfolio/#/email-error');
+			header('Location: http://emmajaeblue.com/#/email-error');
             exit();
         }
 
-        $to = 'emmajaeblue@gmail.com';
+        $to = 'emma@emmajaeblue.com';
         //use html entities to protect from SQL injection
         $subject= 'Subject: '.$user_subject;
         $message='Message Body: '.$user_message;
@@ -39,9 +30,8 @@
 
         //mail($to, $subject, $message);
 
-        if(fake_mail($to, $subject, $message, $headers)){
-            #var_dump($_POST);
-            header('Location: /Blue_E_Portfolio/#/success');
+        if(mail($to, $subject, $message, $headers) && filter_var($user_email, FILTER_VALIDATE_EMAIL)){
+            header('Location: http://emmajaeblue.com/#/success');
             exit();
         }
 
@@ -50,5 +40,7 @@
     }
 
     send_email();
+    header("Access-Control-Allow-Origin: *");
+    header('Content-Type:application/json;charset=UTF-8');
 
 ?>

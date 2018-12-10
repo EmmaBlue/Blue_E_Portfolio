@@ -15,7 +15,6 @@
     grid-template-columns:repeat(auto-fill, minmax(150px, 1fr));
     justify-content: stretch;
     object-fit: cover;
-    max-width: 1440px;
     margin: 0 auto;
 }
 
@@ -115,7 +114,7 @@
     
     .work-box:nth-child(4) {
     
-        background: url("../images/purevol-desktop@2x.jpg") no-repeat;
+        background: url("../images/purevol-mobile@2x.jpg") no-repeat;
         background-position: center center;
         background-size: cover;
     }
