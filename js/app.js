@@ -63,14 +63,19 @@ const home = Vue.component('home-vue', {
 </div>
 </section>
 <section id="project-sect">
+<h2 class="hidden">Project Section</h2>
   <div id="project-grid">
       <section class="work-box">
+      <h2 class="hidden">LYAC</h2>
       </section>
       <section class="work-box">
+      <h2 class="hidden">LSFC</h2>
       </section>
       <section class="work-box">
+      <h2 class="hidden">Pure Volume</h2>
       </section>
       <section class="work-box">
+      <h2 class="hidden">These Sites Save Lives</h2>
       </section>
   </div>
   <div id="but-sect">
@@ -265,7 +270,7 @@ const projects = Vue.component('projects-vue', {
 template: `
 <section class="animated fadeIn delay-1s" id="projectp-sect">
 <h2>Projects</h2>
-<div id="projects-lightbox" class="hidden-lightbox lightbox" :class="{'show-section' : showDetails}">
+<section id="projects-lightbox" class="hidden-lightbox lightbox" :class="{'show-section' : showDetails}">
         <span v-on:click="closeSection" class="lightbox_icon">x</span>
         <h2>{{projectname}}</h2>
         <div class="lightbox-flex">
@@ -307,26 +312,35 @@ template: `
             </div>
             
         </div>
-    </div>
-<div id="projects-gal">
+    </section>
+<section id="projects-gal">
+    <h2 class="hidden">Project Gallery</h2>
     <section class="project-box" :data="1" v-on:click="loadSection">
+        <h2 class="hidden">LSFC</h2>
     </section>
     <section class="project-box" :data="2" v-on:click="loadSection">
+        <h2 class="hidden">LYAC</h2>
     </section>
     <section class="project-box" :data="3" v-on:click="loadSection">
+     <h2 class="hidden">Pure Volume</h2>
     </section>
     <section class="project-box" :data="4" v-on:click="loadSection">
+        <h2 class="hidden">InterAction Collective</h2>
     </section>
     <section class="project-box" :data="5" v-on:click="loadSection">
+         <h2 class="hidden">Blue Fyre</h2>
     </section>
     <section class="project-box" :data="6" v-on:click="loadSection">
+        <h2 class="hidden">These Sites Save Lives</h2>
     </section>
     <section class="project-box" :data="7" v-on:click="loadSection">
+        <h2 class="hidden">Demo Reel</h2>
     </section>
     <section class="project-box" :data="8" v-on:click="loadSection">
+        <h2 class="hidden">Arielle Kaybaga</h2>
     </section>
     
-</div>
+</section>
 </section>
 
 
@@ -352,10 +366,12 @@ const about =  Vue.component('about-vue', {
     <section class="animated fadeIn delay-1s" id="main-about">
         <h2>About Me</h2>
         <section id="about-desc">
+            <h2 class="hidden">About Description</h2>
             <div>
                 <img srcset="./images/aboutp-mobile.png 222w, ./images/aboutp-desktop.png 292w" sizes="(max-width: 1023px) 220px,(min-width: 1024px) 290px">
             </div>
             <section id="about-text">
+                <h2 class="hidden">About Copy</h2>
                 <h2>I love solving problems and making things happen.</h2>
                 <p><span class="bold">You know that friend who’s the first one to coordinate get togethers, help out when someone’s in dire straits, and rally the group around a cause?</span> That’s always been me.  I love finding a problem and working with others to solve it . It’s what I’ve been doing for the past four years in my work as the Director of Advocacy at the London Youth Advisory Council, and in my real-world design and web development projects. </p>
             </section>
@@ -364,14 +380,17 @@ const about =  Vue.component('about-vue', {
             <h2>Fun Facts</h2>
             <div>
                 <section id="productivity-block">
+                    <h2 class="hidden">Productivity</h2>
                     <img class="svg" src="./images/to-do.svg">
                     <p>I’m obsessed with all things productivity. If you ever need to hear about the brilliance of David Allen’s <a href="https://gettingthingsdone.com/">Getting Things Done</a>, prepare for a lecture.</p>
                 </section>
                 <section id="obama-block">
+                    <h2 class="hidden">YA for Obama</h2>
                     <img class="svg" src="./images/megaphone-thin.svg">
                     <p>Community and technology have always been interwoven for me. My political awakening was on the Young Adults for Obama ning, back in 2008 when nings were a thing.</p>
                 </section>
                 <section id="poetry-block">
+                    <h2 class="hidden">Poetry Facts</h2>
                     <img class="svg" src="./images/guitar.svg">
                     <p>I’ve never given up on being a Renaissance woman. I won Grand Slam Champ at <a href="http://www.londonpoetryslam.ca/">the London Poetry Slam</a> in 2015, and I plan on taking calculus for fun when I get the chance.</p>
                 </section>
@@ -381,6 +400,7 @@ const about =  Vue.component('about-vue', {
             <h2>Technical Skills</h2>
             <div class="flex">
                 <section id="css-skills">
+                    <h2 class="hidden">CSS Skills</h2>
                     <img class="svg" src="./images/web-design.svg">
                     <div>
                         <p>CSS Grid</p>
@@ -388,6 +408,7 @@ const about =  Vue.component('about-vue', {
                     </div>
                 </section>
                 <section id="js-skills">
+                    <h2 class="hidden">JS Skills</h2>
                     <img class="svg" src="./images/js-about.svg">
                     <div>
                         <p>GreenSock</p>
@@ -395,6 +416,7 @@ const about =  Vue.component('about-vue', {
                     </div>
                 </section>
                 <section id="server-skills">
+                     <h2 class="hidden">Server Skills</h2>
                     <img class="svg" src="./images/server.svg">
                     <p>PHP</p>
                 </section>
@@ -443,6 +465,7 @@ const about =  Vue.component('about-vue', {
         </section>
         </div>
         <section id="buttons">
+            <h2 class="hidden">Resume Buttons</h2>
             <a target="_blank" href="https://drive.google.com/file/d/1pCzIIA1gSl58UtXOqOZ_nL1TcP2vwH1p/view?usp=sharing"><button>View My Colour Resume</button></a>
             <a target="_blank" href="https://drive.google.com/file/d/1wHipQmG1XfSV2dU7Qogq2VB04NnjLjhz/view?usp=sharing"><button>View My Black & White Resume</button></a>
         </section>
@@ -541,7 +564,9 @@ const community = Vue.component('community-vue', {
     template: `<section id="main-community" class="animated fadeIn delay-1s">
     <h2>Community Work </h2>
 <section id="comm-main">
+    <h2 class="hidden">Community Description</h2>
     <section id="comm-work">
+    <h2 class="hidden">LYAC Work</h2>
     <img id="lyac-pic" srcset="./images/community-main-tablet.jpg 376w, ./images/community-main-tablet@2x.jpg 750w" sizes="(max-width:600px) 370px, (min-width:601px) 750px"/>
         <p>Over the past four years, I've worked as the Director of Advocacy at the London Youth Advisory Council. It's been one of the greatest opportunities I've ever received, and I've gotten the chance to support many incredible projects driven by youth - everything from lobbying for a discounted high school bus pass to supporting a peer support group for youth of colour.</p>
     </section>
@@ -561,7 +586,7 @@ const community = Vue.component('community-vue', {
             <section id="coop-box" class="comm-box" :data="10" v-on:click="loadSection">
                 <h2>Co-Op Evaluation</h2>
             </section>
-            <div id="research-lightbox" class="hidden-lightbox lightbox" :class="{'show-section' : showDetails}">
+            <section id="research-lightbox" class="hidden-lightbox lightbox" :class="{'show-section' : showDetails}">
                 <span v-on:click="closeSection" class="lightbox_icon">x</span>
                 <h2>{{projectname}}</h2>
                 <div class="lightbox-flex">
@@ -574,12 +599,13 @@ const community = Vue.component('community-vue', {
                         <p class="project-desc">{{projectdesc}}</p>
                     </div>
                 </div>
-            </div>
+            </section>
         </section>
 </section> 
 <section id="prezi-sect">
     <h2>Presentations & Workshops</h2>
      <section class="comm-pic-sect">
+        <h2 class="hidden">Speaking Gigs</h2>
         <div class="comm-box flex">
             <div class="org-logo">
                 <img src="./images/youthrex.svg" >

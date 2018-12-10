@@ -14,11 +14,6 @@
     bottom: auto;
 }
 
-#projects-lightbox.show-section {
-
-    //min-height: 750px;
-    bottom: -30%;
-}
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
 
@@ -63,7 +58,7 @@
     background-color: $second-bckgrnd;
     min-height: 750px;
     position: fixed;
-    //bottom: -10%;
+    bottom: -30%;
     margin: 0 auto;
     z-index: 100;
 
