@@ -1,11 +1,13 @@
 # Emma Blue's Portfolio 
 
+![](images/portfolioreadme.png) 
+
 My portfolio site for design and development. 
 
 ## Features
 
 * Portfolio Feature Section
-* Logo Animation
+* Logo Animation Demo Reel 
 
 ## Getting Started
 
@@ -30,6 +32,10 @@ $ git clone https://github.com/EmmaBlue/Blue_E_Portfolio.git
 
 $ cd Blue_E_Portfolio
 
+# Install node modules
+
+$ npm install 
+
 ```
 
 And you’re done!
@@ -38,7 +44,7 @@ And you’re done!
 
 * [CSS Grid](https://cssreference.io/css-grid/)
 * [CSS Flexbox](https://cssreference.io/flexbox/)  
-* [Javascript](https://www.javascript.com/) - Used for animation and lightboxes
+* [Javascript](https://www.javascript.com/) - Used for lightboxes 
 
 ## Authors
 
