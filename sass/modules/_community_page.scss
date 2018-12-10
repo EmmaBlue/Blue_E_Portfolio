@@ -73,7 +73,7 @@
     
 
 
-    .comm-box:nth-child(1) {
+    #ypd-box {
 
         background: url("../images/interview-mobile.jpg") no-repeat;
         background-position: center center;
@@ -83,7 +83,7 @@
         transition: 0.8s opacity ease;
     }
 
-    .comm-box:nth-child(2) {
+    #coop-box {
 
         background: url("../images/laptop-mobile.jpg") no-repeat;
         background-position: center center;

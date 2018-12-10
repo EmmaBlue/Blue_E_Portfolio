@@ -8,18 +8,18 @@
 
         //If there's no message or email address, show error
         if(empty($_POST['email']) || empty($_POST['message']) ){
-            header('Location: /Blue_E_Portfolio/#/error');
+            header('Location: http://emmajaeblue.com/#/error');
             exit();
         }
 
         //If email address is invalid
 
         if (filter_var($user_email, FILTER_VALIDATE_EMAIL) === false) {
-			header('Location: /Blue_E_Portfolio/#/email-error');
+			header('Location: http://emmajaeblue.com/#/email-error');
             exit();
         }
 
-        $to = 'emmajaeblue@gmail.com';
+        $to = 'emma@emmajaeblue.com';
         //use html entities to protect from SQL injection
         $subject= 'Subject: '.$user_subject;
         $message='Message Body: '.$user_message;
@@ -30,8 +30,8 @@
 
         //mail($to, $subject, $message);
 
-        if(mail($to, $subject, $message, $headers)){
-            header('Location: /Blue_E_Portfolio/#/success');
+        if(mail($to, $subject, $message, $headers) && filter_var($user_email, FILTER_VALIDATE_EMAIL)){
+            header('Location: http://emmajaeblue.com/#/success');
             exit();
         }
 

@@ -129,6 +129,7 @@ const projects = Vue.component('projects-vue', {
             projecttablet: "",
             projectdesktop:"",
             videoplayer: "",
+            projectlink: "",
             vidon: false,
 
         }
@@ -148,16 +149,19 @@ const projects = Vue.component('projects-vue', {
 
             console.log('load video initialized');
 
-    
-            this.vidon = true,
-            this.playActivate = true,
-            videoplayer = this.$refs.videoElement,
-            playPause = this.$refs.playpause,
-            rewind = this.$refs.rewind,
-            muteBtn = this.$refs.muteBtn,
-            videoplayer.volume = 0.6;
 
-            videoplayer.play();
+                this.vidon = true,
+                this.playActivate = true,
+                videoplayer = this.$refs.videoElement,
+                playPause = this.$refs.playpause,
+                rewind = this.$refs.rewind,
+                muteBtn = this.$refs.muteBtn,
+                videoplayer.volume = 0.6;
+    
+                videoplayer.play();
+
+
+
         },
 
         togglePlay() {
@@ -205,9 +209,11 @@ const projects = Vue.component('projects-vue', {
             this.projectwide = currentData[0].wide_path;
             this.projectfeatures= currentData[0].section_features;
             this.projectdesc= currentData[0].section_desc;
+            this.projectlink= currentData[0].section_link;
             this.showDetails = true;
             if (currentData[0].section_ID == 7) {
-                this.projectvid = currentData[0].video_mobile_path;
+                this.projectvid = currentData[0].video_tablet_path;
+                //this.playActivate = true;
             }
             else {
                 this.projectvid = null;
@@ -259,30 +265,13 @@ const projects = Vue.component('projects-vue', {
 template: `
 <section class="animated fadeIn delay-1s" id="projectp-sect">
 <h2>Projects</h2>
-<div id="projects-gal">
-    <section class="project-box" :data="1" v-on:click="loadSection">
-    </section>
-    <section class="project-box" :data="2" v-on:click="loadSection">
-    </section>
-    <section class="project-box" :data="3" v-on:click="loadSection">
-    </section>
-    <section class="project-box" :data="4" v-on:click="loadSection">
-    </section>
-    <section class="project-box" :data="5" v-on:click="loadSection">
-    </section>
-    <section class="project-box" :data="6" v-on:click="loadSection">
-    </section>
-    <section class="project-box" :data="7" v-on:click="loadSection">
-    </section>
-    <section class="project-box" :data="8" v-on:click="loadSection">
-    </section>
-    <div class="hidden-lightbox lightbox" :class="{'show-section' : showDetails}">
+<div id="projects-lightbox" class="hidden-lightbox lightbox" :class="{'show-section' : showDetails}">
         <span v-on:click="closeSection" class="lightbox_icon">x</span>
         <h2>{{projectname}}</h2>
-        <div id="lightbox-flex">
+        <div class="lightbox-flex">
             <div>
-                <div v-if="vidon == false" v-on:click="playVideo" id="image-section">
-                    <img :alt="projectname" :srcset="'./images/' + projectmobile + ' 300w, ./images/' + projecttablet + ' 637w'" sizes="(max-width:600px) 300px, (min-width:601px) 630px">
+                <div v-if="vidon == false" v-on:click="playVideo" class="image-section">
+                    <img :alt="projectname" :srcset="'./images/' + projectmobile + ' 300w, ./images/' + projecttablet + ' 637w,' " sizes="(max-width:600px) 630px, (min-width:601px) 300px">
                     <div v-if="projectname == 'Demo Reel'" ref="playBtn" id='playBtn'><i class="far fa-play-circle"></i></div>
                 </div>
                 <div class="first-arrow arrow hidden" v-on:click="backwardSection">
@@ -313,12 +302,33 @@ template: `
                 <h2>Technical Features</h2>
                 <p class="project-features">{{projectfeatures}}</p>
                 <p class="project-desc">{{projectdesc}}</p>
+                <button><a :href="projectlink">Learn More</a></button>
+                 
             </div>
+            
         </div>
     </div>
+<div id="projects-gal">
+    <section class="project-box" :data="1" v-on:click="loadSection">
+    </section>
+    <section class="project-box" :data="2" v-on:click="loadSection">
+    </section>
+    <section class="project-box" :data="3" v-on:click="loadSection">
+    </section>
+    <section class="project-box" :data="4" v-on:click="loadSection">
+    </section>
+    <section class="project-box" :data="5" v-on:click="loadSection">
+    </section>
+    <section class="project-box" :data="6" v-on:click="loadSection">
+    </section>
+    <section class="project-box" :data="7" v-on:click="loadSection">
+    </section>
+    <section class="project-box" :data="8" v-on:click="loadSection">
+    </section>
     
 </div>
 </section>
+
 
 `});
 
@@ -457,6 +467,7 @@ const community = Vue.component('community-vue', {
 
             projectname: "",
             projectmobile : "",
+            projecttablet : "",
             projectfeatures : "",
             projectdesc : "",
             showDetails : false
@@ -481,7 +492,9 @@ const community = Vue.component('community-vue', {
             dataKey = e.target.getAttribute("data");
             currentData = this.alldata.filter(tbl_section=> tbl_section.section_ID == dataKey);
             this.projectname = currentData[0].section_name;
+            this.projectID= currentData[0].section_ID;
             this.projectmobile = currentData[0].mobile_path;
+            this.projecttablet = currentData[0].tablet_path;
             this.projectfeatures= currentData[0].section_features;
             this.projectdesc= currentData[0].section_desc;
             this.showDetails = true;
@@ -541,32 +554,28 @@ const community = Vue.component('community-vue', {
 </section>
 <section id="research-sect">
     <h2>Research & Evaluation Projects</h2>
-    <section class="comm-pic-sect">
-        <section class="comm-box" :data="9" v-on:click="loadSection">
-            <h2>YPD Interviewing</h2>
+        <section class="comm-pic-sect">
+            <section id="ypd-box" class="comm-box" :data="9" v-on:click="loadSection">
+                <h2>YPD Interviewing</h2>
+            </section>
+            <section id="coop-box" class="comm-box" :data="10" v-on:click="loadSection">
+                <h2>Co-Op Evaluation</h2>
+            </section>
+            <div id="research-lightbox" class="hidden-lightbox lightbox" :class="{'show-section' : showDetails}">
+                <span v-on:click="closeSection" class="lightbox_icon">x</span>
+                <h2>{{projectname}}</h2>
+                <div class="lightbox-flex">
+                    <div class="image-section">
+                        <img id="research-image" :alt="projectname" :srcset="'./images/' + projectmobile + ' 300w, ./images/' + projecttablet + ' 637w,' " sizes="(max-width:600px) 630px, (min-width:601px) 300px">
+                    </div>
+                    <div class="project-text">
+                        <h2>Technical Features</h2>
+                        <p class="project-features">{{projectfeatures}}</p>
+                        <p class="project-desc">{{projectdesc}}</p>
+                    </div>
+                </div>
+            </div>
         </section>
-        <section class="comm-box" :data="10" v-on:click="loadSection">
-            <h2>Co-Op Evaluation</h2>
-        </section>
-        <div class="hidden-lightbox lightbox" :class="{'show-section' : showDetails}">
-                <h2 class="hidden">{{projectname}}</h2>
-                <span v-on:click="closeSection" class="lightbox_icon">X</span>
-                <div>
-                    <img :alt="projectname" :src="'./images/' + projectmobile">
-                </div>
-                <div class="project-text">
-                    <h2>Technical Features</h2>
-                    <p class="project-features">{{projectfeatures}}</p>
-                    <p class="project-desc">{{projectdesc}}</p>
-                </div>
-                <div class="arrow hidden" v-on:click="backwardSection">
-                    <p>></p>
-                </div>
-                <div class="arrow hidden" v-on:click="loadSection">
-                    <p><</p>
-                </div>
-        </div>
-    </section>
 </section> 
 <section id="prezi-sect">
     <h2>Presentations & Workshops</h2>
@@ -579,7 +588,7 @@ const community = Vue.component('community-vue', {
         </div>
         <div class="comm-box flex">
             <div class="org-logo">
-                <img src="./images/amo.svg">
+                <img src="/images/amo.svg">
             </div>
             <p>In August 2018, my colleague and I presented to a group of city councillors and bureaucrats about youth engagement.</p>
         </div>
@@ -663,7 +672,7 @@ template: `<section id="error-sect">
 <h2>Oops!</h2>
 <img alt="error" src="./images/error.svg">
 <h2>Your message contains an error. Please fill it out again and I'll get back to you as soon as I can!</h2>
-<a href="/Blue_E_Portfolio/#/contact"><button>Go Back to Contact Page</button></a>
+<a href="http://emmajaeblue.com/#/contact"><button>Go Back to Contact Page</button></a>
 </section>
 
 `});
@@ -692,7 +701,7 @@ template: `<section id="email-error-sect">
 <h2>Oops!</h2>
 <img alt="error" src="./images/error.svg">
 <h2>Your message contains an invalid email address. Please fill it out again and I'll get back to you as soon as I can!</h2>
-<a href="/Blue_E_Portfolio/#/contact"><button>Go Back to Contact Page</button></a>
+<a href="http://emmajaeblue.com/#/contact"><button>Go Back to Contact Page</button></a>
 </section>
 
 `});
@@ -761,9 +770,9 @@ template: `<section id="success-sect">
         loading: false,
         socItems: [
 
-            {link:"http://www.twitter.com", id: "twitter", class: "fab fa-twitter"},
-            {link:"http://www.facebook.com", id: "facebook", class: "fab fa-facebook-square"},
-            {link:"http://www.instagram.com", id: "instagram", class: "fab fa-instagram"},
+            {link:"https://twitter.com/EmmaJaeBlue", id: "twitter", class: "fab fa-twitter"},
+            {link:"https://www.facebook.com/emmajaeblue", id: "facebook", class: "fab fa-facebook-square"},
+            {link:"https://www.instagram.com/emmajaeblue/", id: "instagram", class: "fab fa-instagram"},
             {link:"https://github.com/EmmaBlue?tab=repositories", id: "github", class: "fab fa-github"}
 
           ],
