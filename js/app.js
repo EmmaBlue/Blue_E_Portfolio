@@ -6,13 +6,13 @@
 
 // Assign variable to vue component so it can be used by vue router
 
-const home = Vue.component('home-vue', { 
+const home = Vue.component('home-vue', {
 
     data: function() {
 
         return {
 
-        
+
         }
 
     },
@@ -25,7 +25,7 @@ const home = Vue.component('home-vue', {
             // `this` inside methods points to the Vue instance
             // `event` is the native DOM event
             console.log('responsiveImg working!')
-    
+
         },
 
         animate (e) {
@@ -36,22 +36,22 @@ const home = Vue.component('home-vue', {
                 console.log("Scrolling down");
             }
             this.scrollPosition = currentScrollPosition;
-    
+
             //Display element and animate it
             //element.classList.remove("none");
             //element.classList.add("animated");
             //element.classList.add("fadeIn");
         },
 
-    
+
 
     },
-    
-    template: 
+
+    template:
   `
   <section id="main-home"><section id="front-sect">
 <h2 class="hidden">Home Page</h2>
-<div class="animated fadeIn delay-1s" v-on:scroll="animate" id="home-flex">
+<div class="animated fadeIn" v-on:scroll="animate" id="home-flex">
     <div id="home-desc">
         <h2>Hi there!</h2>
         <p>I’m Emma Blue, a <span>front end developer</span> and <span>community organizer</span> with a passion for creating human centred solutions. </p>
@@ -113,7 +113,7 @@ const home = Vue.component('home-vue', {
 </section>
 `});
 
-const projects = Vue.component('projects-vue', { 
+const projects = Vue.component('projects-vue', {
 
     data: function() {
 
@@ -142,7 +142,7 @@ const projects = Vue.component('projects-vue', {
     },
 
     mounted : function() {
-            
+
         //passing null in makes boolean false, pass into else statement in fetchSectionData
         this.fetchSectionData(null);
 
@@ -162,7 +162,7 @@ const projects = Vue.component('projects-vue', {
                 rewind = this.$refs.rewind,
                 muteBtn = this.$refs.muteBtn,
                 videoplayer.volume = 0.6;
-    
+
                 videoplayer.play();
 
 
@@ -206,7 +206,7 @@ const projects = Vue.component('projects-vue', {
             dataKey = e.target.getAttribute("data");
             //videoplayer = this.$refs.videoElement,
             currentData = this.alldata.filter(tbl_section=> tbl_section.section_ID == dataKey);
-            
+
             this.projectname = currentData[0].section_name;
             this.projectmobile = currentData[0].mobile_path;
             this.projecttablet = currentData[0].tablet_path;
@@ -230,7 +230,7 @@ const projects = Vue.component('projects-vue', {
         },
 
         backwardSection() {
-            // depending on datakey on section, when arrow clicked, make section ID - 1 
+            // depending on datakey on section, when arrow clicked, make section ID - 1
             var getKey = getKey.bind(dataKey);
             console.log(dataKey);
 
@@ -266,9 +266,9 @@ const projects = Vue.component('projects-vue', {
         }
 
     },
-    
+
 template: `
-<section class="animated fadeIn delay-1s" id="projectp-sect">
+<section class="animated fadeIn" id="projectp-sect">
 <h2>Projects</h2>
 <section id="projects-lightbox" class="hidden-lightbox lightbox" :class="{'show-section' : showDetails}">
         <span v-on:click="closeSection" class="lightbox_icon">x</span>
@@ -308,9 +308,9 @@ template: `
                 <p class="project-features">{{projectfeatures}}</p>
                 <p class="project-desc">{{projectdesc}}</p>
                 <button><a :href="projectlink">Learn More</a></button>
-                 
+
             </div>
-            
+
         </div>
     </section>
 <div id="projects-gal">
@@ -338,31 +338,31 @@ template: `
     <section class="project-box" :data="8" v-on:click="loadSection">
         <h2 class="hidden">Arielle Sign</h2>
     </section>
-    
+
 </div>
 </section>
 
 
 `});
 
-const about =  Vue.component('about-vue', { 
+const about =  Vue.component('about-vue', {
 
     data: function() {
 
         return {
 
-        
+
         }
 
     },
 
     methods: {
-    
+
 
     },
 
     template: `
-    <section class="animated fadeIn delay-1s" id="main-about">
+    <section class="animated fadeIn" id="main-about">
         <h2>About Me</h2>
         <section id="about-desc">
             <h2 class="hidden">About Description</h2>
@@ -420,7 +420,7 @@ const about =  Vue.component('about-vue', {
                 </section>
             </div>
         </section>
-        <div id="resume-area"> 
+        <div id="resume-area">
         <section id="education">
             <h2>Education</h2>
             <div class="flex">
@@ -439,7 +439,7 @@ const about =  Vue.component('about-vue', {
                     <p>Director of Advocacy - London Youth Advisory Council</p>
                     <p>May 2015 - current</p>
                     <ul class="resume-list">
-                        <li>Manage a team of <span class="bold">15 youth volunteers</span> to design and           
+                        <li>Manage a team of <span class="bold">15 youth volunteers</span> to design and
                         execute community projects</li>
                         <li>Collaborate with <span class="bold">non-profits and government officials</span> to advocate on policy</li>
                         <li>Coordinate an annual election with <span class="bold">30+</span> youth councillor applicants and <span class="bold">over 5000 voters</span></li>
@@ -493,13 +493,13 @@ const community = Vue.component('community-vue', {
             projectdesc : "",
             showDetails : false
 
-        
+
         }
 
     },
 
     mounted : function() {
-            
+
         //passing null in makes boolean false, pass into else statement in fetchMovieData
         this.fetchSectionData(null);
 
@@ -524,7 +524,7 @@ const community = Vue.component('community-vue', {
         },
 
         backwardSection() {
-            // depending on datakey on section, when arrow clicked, make section ID - 1 
+            // depending on datakey on section, when arrow clicked, make section ID - 1
             var getKey = getKey.bind(dataKey);
             console.log(dataKey);
 
@@ -554,12 +554,12 @@ const community = Vue.component('community-vue', {
 
         }
 
-        
-    
+
+
 
     },
 
-    template: `<section id="main-community" class="animated fadeIn delay-1s">
+    template: `<section id="main-community" class="animated fadeIn">
     <h2>Community Work </h2>
 <section id="comm-main">
     <h2 class="hidden">Community Intro</h2>
@@ -599,7 +599,7 @@ const community = Vue.component('community-vue', {
                 </div>
             </div>
         </section>
-</section> 
+</section>
 <section id="prezi-sect">
     <h2>Presentations & Workshops</h2>
      <section class="comm-pic-sect">
@@ -622,7 +622,7 @@ const community = Vue.component('community-vue', {
 
 
 
-}); 
+});
 
 const contact = Vue.component('contact-vue', {
 
@@ -638,17 +638,17 @@ const contact = Vue.component('contact-vue', {
                 {label: 'Subject', type:'text', class: 'input', name: 'subject', placeholder:'Subject'}
               ],
 
-        
+
         }
 
     },
 
     methods: {
-    
+
 
     },
 
-    template: ` <section id="contactp-sect" class="animated fadeIn delay-1s">
+    template: ` <section id="contactp-sect" class="animated fadeIn">
 <h2>Contact</h2>
 <p>Have a question or a concern? Want to work together on a coding project? Have an idea for a community project? Feel free to contact me!  </p>
 <div id="form-container">
@@ -670,9 +670,9 @@ const contact = Vue.component('contact-vue', {
 
 });
 
-/* Contact Form Redirects */ 
+/* Contact Form Redirects */
 
-const error = Vue.component('error-vue', { 
+const error = Vue.component('error-vue', {
 
     data: function() {
 
@@ -691,7 +691,7 @@ const error = Vue.component('error-vue', {
 
 
     },
-    
+
 template: `<section id="error-sect">
 <h2>Oops!</h2>
 <img alt="error" src="./images/error.svg">
@@ -701,7 +701,7 @@ template: `<section id="error-sect">
 
 `});
 
-const emailerror = Vue.component('email-error-vue', { 
+const emailerror = Vue.component('email-error-vue', {
 
     data: function() {
 
@@ -720,7 +720,7 @@ const emailerror = Vue.component('email-error-vue', {
 
 
     },
-    
+
 template: `<section id="email-error-sect">
 <h2>Oops!</h2>
 <img alt="error" src="./images/error.svg">
@@ -731,7 +731,7 @@ template: `<section id="email-error-sect">
 `});
 
 
-const success = Vue.component('success-vue', { 
+const success = Vue.component('success-vue', {
 
     data: function() {
 
@@ -750,7 +750,7 @@ const success = Vue.component('success-vue', {
 
 
     },
-    
+
 template: `<section id="success-sect">
 <h2>Looking forward to connecting!</h2>
 <img alt="success" src="./images/success.svg">
@@ -758,8 +758,8 @@ template: `<section id="success-sect">
 </section>
 
 `});
-  
-  
+
+
   const routes = [{path: '/', component: home},
     {path: '/projects', component: projects},
     {path: '/about', component: about},
@@ -778,7 +778,7 @@ template: `<section id="success-sect">
     //{{ $this.route.params.userid }} will output :userid from url
     //watch:{ '$route' (to, from){method with changing data} } in export default
 */
-  
+
   const router = new VueRouter({
      //pass routes into vue router
      routes,
@@ -786,23 +786,22 @@ template: `<section id="success-sect">
    });
 
 
-  
+
   const app = new Vue({
      el: '#app',
      router,
      data: {
-        loading: false,
         socItems: [
 
             {link:"https://twitter.com/EmmaJaeBlue", id: "twitter", class: "fab fa-twitter"},
-            {link:"https://www.facebook.com/emmajaeblue", id: "facebook", class: "fab fa-facebook-square"},
+            {link:"https://www.linkedin.com/in/emmajaeblue/", id: "linkedin", class: "fab fa-linkedin"},
             {link:"https://www.instagram.com/emmajaeblue/", id: "instagram", class: "fab fa-instagram"},
             {link:"https://github.com/EmmaBlue?tab=repositories", id: "github", class: "fab fa-github"}
 
           ],
 
-        
-    }, 
+
+    },
 
     created : function() {
 
@@ -810,7 +809,7 @@ template: `<section id="success-sect">
     },
 
     mounted : function() {
-        // listen for when Vue is done building itself 
+        // listen for when Vue is done building itself
         console.log('mounted');
 
 
@@ -831,7 +830,7 @@ template: `<section id="success-sect">
 
   // Making Loading Animation Work
 
-  router.beforeResolve((to, from, next) => {
+  /*router.beforeResolve((to, from, next) => {
     app.loading = true;
     next();
   })
@@ -839,4 +838,4 @@ template: `<section id="success-sect">
 
   router.afterEach((to, from) => {
     setTimeout(() => app.loading = false, 1000); // timeout for demo purposes
-  })
+  })*/

@@ -4,7 +4,7 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     justify-content: stretch;
     object-fit: cover;
-    max-width: 1499px; 
+    max-width: 1499px;
     margin: 0 auto;
 }
 
@@ -32,12 +32,12 @@
         grid-template-columns: (1fr 1fr);
 
     }
-    
+
 }
 
 /* Image Styles */
 
-//Image Styles 
+//Image Styles
 
 #projectp-sect {
 
@@ -122,19 +122,19 @@
                 background: url("../images/lsfc-project-tablet@2x.jpg") no-repeat;
                 background-size: cover;
                 background-position: center center;
-            
+
             }
-            
-            
+
+
             #second-box {
-            
+
                 background: url("../images/lyac-project-tablet@2x.jpg") no-repeat;
                 background-position: top left;
                 background-size: cover;
             }
 
             #third-box {
-            
+
                 background: url("../images/purevol-project-tablet@2x.jpg") no-repeat;
                 background-position: center center;
                 background-size: cover;
@@ -154,15 +154,15 @@
                 background-position: center center;
                 background-size: cover;
             }
-            
+
             #sixth-box {
-            
-            
+
+
                 background: url("../images/scs-project-tablet@2x.jpg") no-repeat;
                 background-position: center center;
                 background-size: cover;
             }
-            
+
 
 
             #seventh-box {
